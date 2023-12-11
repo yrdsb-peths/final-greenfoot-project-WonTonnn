@@ -12,15 +12,47 @@ public class Bat extends Actor
      * Act - do whatever the Bat wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    
-    
+
+    GreenfootImage[] down_swing = new GreenfootImage[3];
+    GreenfootImage[] side_swing = new GreenfootImage[3];
+    GreenfootImage[] bat_idle = new GreenfootImage[5];
+
     public void act()
     {
-        MyWorld myWorld = (MyWorld) new MyWorld();
-        
-        if(Greenfoot.mouseClicked(myWorld))
+        MyWorld myWorld = (MyWorld) getWorld();
+        if(myWorld.fighting == true)
         {
-            System.out.println("attack :D");
+            if(Greenfoot.mouseClicked(myWorld))
+            {
+                System.out.println("attack :D");
+            }
         }
+
+    }
+
+    public Bat()
+    {
+        //swing down animation
+        for(int i = 0; i < down_swing.length; i++)
+        {
+            down_swing[i] = new GreenfootImage("temp_bat/down_swing/down_" + i + ".png");
+            
+        }
+
+    }
+
+    public void animateDownSwing()
+    {
+
+    }
+
+    public void animateSideSwing()
+    {
+
+    }
+
+    public void animateIdleBat()
+    {
+
     }
 }

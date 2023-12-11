@@ -14,6 +14,10 @@ public class MyWorld extends World
      * 
      */
     Bat bat = new Bat();
+    CharacterPink pink = new CharacterPink();
+    
+    public boolean fighting = false;
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
