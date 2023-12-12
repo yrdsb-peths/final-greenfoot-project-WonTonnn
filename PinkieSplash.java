@@ -14,6 +14,12 @@ public class PinkieSplash extends Actor
      */
     public void act()
     {
-        // Add your action code here.
+        MyWorld gameWorld = new MyWorld();
+        TitleScreen title = (TitleScreen) getWorld();
+        if(Greenfoot.mouseClicked(this))
+        {
+            title.pinkChoice = true;
+            Greenfoot.setWorld(gameWorld);
+        }
     }
 }

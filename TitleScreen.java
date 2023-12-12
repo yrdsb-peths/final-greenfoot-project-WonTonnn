@@ -29,29 +29,20 @@ public class TitleScreen extends World
 
     public void addButton()
     {
-        addObject(button, 200, 300);
+        addObject(button, 300, 200);
     }
 
     public void addChoice()
     {
         removeObject(button);
-        addObject(choicePink, 300, 200);
+        addObject(choicePink, 450, 200);
         GreenfootImage pinkImg = choicePink.getImage();
-        pinkImg.scale(200,200);
+        pinkImg.scale(250,250);
         
-        addObject(choiceBlue, 100, 300);
+        addObject(choiceBlue, 150, 200);
         GreenfootImage blueImg = choiceBlue.getImage();
-        blueImg.scale(200, 200);
+        blueImg.scale(250, 250);
 
-        if(Greenfoot.mouseClicked(choicePink))
-        {
-            pinkChoice = true;
-        }
-
-        if(Greenfoot.mouseClicked(choiceBlue))
-        {
-            blueChoice = true;
-        }
     }
 }
 
