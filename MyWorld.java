@@ -33,8 +33,8 @@ public class MyWorld extends World
     public void createBat()
     {
         GreenfootImage batImg = bat.getImage();
-        batImg.scale(600,400);
-        addObject(bat, 0,0);
+        batImg.scale(1200,800);
+        //addObject(bat, 0,0);
         
     }
 }

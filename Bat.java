@@ -35,7 +35,7 @@ public class Bat extends Actor
         //swing down animation
         for(int i = 0; i < down_swing.length; i++)
         {
-            down_swing[i] = new GreenfootImage("temp_bat/down_swing/down_" + i + ".png");
+            down_swing[i] = new GreenfootImage("temp_bat/down_swing/down_" + i + ".jpg");
             
         }
 
