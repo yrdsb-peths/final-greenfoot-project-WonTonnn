@@ -14,8 +14,17 @@ public class MyWorld extends World
      * 
      */
     Bat bat = new Bat();
-    CharacterPink pink = new CharacterPink();
-    
+    Pink pink = new Pink();
+    Blue blue = new Blue();
+    public boolean choice;
+    /*
+     * choice = true : pink character
+     * choice = false : blue character
+     */
+    GreenfootImage pinkImg;
+    GreenfootImage blueImg;
+    public int length = 100;
+    public int width = 100;
     public boolean fighting = false;
     
     public MyWorld()
@@ -23,10 +32,29 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         createBat();
+        createChar();
+    }
+    
+    public void checkChoice()
+    {
+        TitleScreen title = new TitleScreen();
+        choice = title.setChoice();
+        System.out.println(choice);
     }
     
     public void createChar()
     {
+        checkChoice();
+        if(choice == true)
+        {
+            GreenfootImage pinkImg = pink.getImage();
+            pinkImg.scale(100,100);
+            addObject(pink, 300, 200);
+        }else if(choice == false){
+            GreenfootImage blueImg = blue.getImage();
+            blueImg.scale(100,100);
+            addObject(blue, 300, 200);
+        }
         
     }
     

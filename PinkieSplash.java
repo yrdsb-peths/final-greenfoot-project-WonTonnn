@@ -18,7 +18,7 @@ public class PinkieSplash extends Actor
         TitleScreen title = (TitleScreen) getWorld();
         if(Greenfoot.mouseClicked(this))
         {
-            title.pinkChoice = true;
+            title.choice = true;
             Greenfoot.setWorld(gameWorld);
         }
     }

@@ -16,8 +16,7 @@ public class TitleScreen extends World
     StartButton button = new StartButton();
     PinkieSplash choicePink = new PinkieSplash();
     BlueSplash choiceBlue = new BlueSplash();
-    public boolean blueChoice = false;
-    public boolean pinkChoice = false; 
+    public boolean choice;
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -42,7 +41,17 @@ public class TitleScreen extends World
         addObject(choiceBlue, 150, 200);
         GreenfootImage blueImg = choiceBlue.getImage();
         blueImg.scale(250, 250);
-
+    }
+    
+    public boolean getChoice(boolean x)
+    {
+        choice = x;
+        return x;
+    }
+    
+    public boolean setChoice()
+    {
+        return choice;
     }
 }
 
