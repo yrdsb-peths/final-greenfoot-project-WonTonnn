@@ -16,6 +16,7 @@ public class TitleScreen extends World
     StartButton button = new StartButton();
     PinkieSplash choicePink = new PinkieSplash();
     BlueSplash choiceBlue = new BlueSplash();
+    public static boolean askChoice;
     public boolean choice;
     public TitleScreen()
     {    
@@ -23,9 +24,7 @@ public class TitleScreen extends World
         super(600, 400, 1); 
         addButton();
 
-        
     }
-
     public void addButton()
     {
         addObject(button, 300, 200);
@@ -37,21 +36,40 @@ public class TitleScreen extends World
         addObject(choicePink, 450, 200);
         GreenfootImage pinkImg = choicePink.getImage();
         pinkImg.scale(250,250);
-        
         addObject(choiceBlue, 150, 200);
         GreenfootImage blueImg = choiceBlue.getImage();
         blueImg.scale(250, 250);
+
     }
-    
-    public boolean getChoice(boolean x)
+
+    public void choiceCheck()
     {
-        choice = x;
-        return x;
+        MouseInfo info = Greenfoot.getMouseInfo();
+        if(info != null)
+        {
+            if(info.getButton() == 1)
+            {
+                if(info.getActor() == choicePink)
+                {
+                    choice = true;
+                }else if(info.getActor() == choiceBlue)
+                {
+                    choice = false;
+                }
+            }
+
+        }
     }
-    
+
+    public void act()
+    {
+        choiceCheck();
+    }
+
     public boolean setChoice()
     {
-        return choice;
+        
+        return askChoice;
     }
 }
 

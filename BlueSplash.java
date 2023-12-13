@@ -18,7 +18,8 @@ public class BlueSplash extends Actor
         TitleScreen title = (TitleScreen) getWorld();
         if(Greenfoot.mouseClicked(this))
         {
-            title.choice = false;
+            //title.choice = false;
+            title.choiceCheck();
             Greenfoot.setWorld(gameWorld);
         }
     }

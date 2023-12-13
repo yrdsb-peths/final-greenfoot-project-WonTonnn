@@ -50,7 +50,9 @@ public class MyWorld extends World
             GreenfootImage pinkImg = pink.getImage();
             pinkImg.scale(100,100);
             addObject(pink, 300, 200);
+            
         }else if(choice == false){
+            
             GreenfootImage blueImg = blue.getImage();
             blueImg.scale(100,100);
             addObject(blue, 300, 200);
