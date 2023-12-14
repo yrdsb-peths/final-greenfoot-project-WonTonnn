@@ -14,13 +14,13 @@ public class BlueSplash extends Actor
      */
     public void act()
     {
-        MyWorld gameWorld = new MyWorld();
+        
         TitleScreen title = (TitleScreen) getWorld();
+        MyWorld gameWorld = (MyWorld) getWorld();
         if(Greenfoot.mouseClicked(this))
         {
-            //title.choice = false;
-            title.choiceCheck();
-            Greenfoot.setWorld(gameWorld);
+            gameWorld.setChoice(false);
+            gameWorld.createChar();
         }
     }
 }

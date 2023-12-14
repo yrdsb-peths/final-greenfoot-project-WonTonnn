@@ -14,13 +14,13 @@ public class PinkieSplash extends Actor
      */
     public void act()
     {
-        MyWorld gameWorld = new MyWorld();
+        
         TitleScreen title = (TitleScreen) getWorld();
+        MyWorld gameWorld = (MyWorld) getWorld();
         if(Greenfoot.mouseClicked(this))
         {
-            //title.choice = true;
-            title.choiceCheck();
-            Greenfoot.setWorld(gameWorld);
+            gameWorld.setChoice(true);
+            gameWorld.createChar();
         }
     }
 }
