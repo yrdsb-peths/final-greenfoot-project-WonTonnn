@@ -20,22 +20,21 @@ public class Pink extends Actor
     SimpleTimer timer = new SimpleTimer();
     MyWorld world = (MyWorld) getWorld();
 
-    public void pink()
+    public Pink()
     {
 
         //Idle animation loop
         for(int i = 0; i < pinkIdle.length; i++)
         {
-            pinkIdle[i] = new GreenfootImage("temp_char/pink_idle/" + i + ".png");
-            pinkIdle[i].scale(world.defaultSize, world.defaultSize);
+            pinkIdle[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
+            pinkIdle[i].scale(70, 70);
         }
 
         // right animation loo
         for(int r = 0; r < pinkRight.length; r++)
         {
-
             pinkRight[r] = new GreenfootImage("temp_char/pink_right/" + r + ".png");
-            pinkRight[r].scale(world.defaultSize, world.defaultSize);
+            pinkRight[r].scale(70, 70);
             System.out.println("right");
         }
 
@@ -44,7 +43,7 @@ public class Pink extends Actor
         for(int l = 0; l < pinkLeft.length; l++)
         {
             pinkLeft[l] = new GreenfootImage("temp_char/pink_left/" + l + ".png");
-            pinkLeft[l].scale(world.defaultSize, world.defaultSize);
+            pinkLeft[l].scale(70, 70);
         }
 
         timer.mark();
@@ -95,17 +94,18 @@ public class Pink extends Actor
         {
             if(!Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("d"))
             {
-                //animateIdle();
+                animateIdle();
             }
 
             if(Greenfoot.isKeyDown("a"))
             {
-                //animateLeft();
+                setLocation(getX() - 2, getY());
+                animateLeft();
             }
 
             if(Greenfoot.isKeyDown("d"))
             {
-                setLocation(getX() + 5, getY());
+                setLocation(getX() + 2, getY());
                 animateRight();
             }
         }
