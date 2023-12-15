@@ -29,6 +29,7 @@ public class MyWorld extends World
     public int width = 100;
     public boolean fighting = false;
     public boolean madeChoice = false;
+    public int defaultSize = 70;
 
     public MyWorld()
     {    
@@ -81,14 +82,14 @@ public class MyWorld extends World
         if(choice == true)
         {
             GreenfootImage pinkImg = pink.getImage();
-            pinkImg.scale(100,100);
-            addObject(pink, 300, 200);
+            pinkImg.scale(70,70);
+            addObject(pink, 20, 300);
 
         }else if(choice == false){
 
             GreenfootImage blueImg = blue.getImage();
-            blueImg.scale(100,100);
-            addObject(blue, 300, 200);
+            blueImg.scale(70,70);
+            addObject(blue, 20, 300);
         }
 
     }

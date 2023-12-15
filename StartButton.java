@@ -19,5 +19,6 @@ public class StartButton extends Actor
         {
             title.addChoice();
         }
+
     }
 }
