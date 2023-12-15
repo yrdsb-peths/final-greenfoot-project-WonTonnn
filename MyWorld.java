@@ -38,10 +38,15 @@ public class MyWorld extends World
         addChoice();        
     }
     
+    public void act()
+    {
+        makeChoice();
+    }
+    
     public void setChoice(boolean x)
     {
         choice = x;
-        System.out.println(choice);
+        createChar();
     }
 
     public void addChoice()
@@ -52,6 +57,21 @@ public class MyWorld extends World
         addObject(choiceBlue, 150, 200);
         GreenfootImage blueImg = choiceBlue.getImage();
         blueImg.scale(250, 250);
+    }
+    
+    public void makeChoice()
+    {
+        if(Greenfoot.mouseClicked(choicePink))
+        {
+            setChoice(true);
+            createChar();
+        }
+        
+        if(Greenfoot.mouseClicked(choiceBlue))
+        {
+            setChoice(false);
+            createChar();
+        }
     }
 
     public void createChar()

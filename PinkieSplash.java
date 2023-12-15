@@ -15,12 +15,5 @@ public class PinkieSplash extends Actor
     public void act()
     {
         
-        TitleScreen title = (TitleScreen) getWorld();
-        MyWorld gameWorld = (MyWorld) getWorld();
-        if(Greenfoot.mouseClicked(this))
-        {
-            gameWorld.setChoice(true);
-            gameWorld.createChar();
-        }
     }
 }

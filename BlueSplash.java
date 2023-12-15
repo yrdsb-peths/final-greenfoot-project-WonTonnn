@@ -15,12 +15,5 @@ public class BlueSplash extends Actor
     public void act()
     {
         
-        TitleScreen title = (TitleScreen) getWorld();
-        MyWorld gameWorld = (MyWorld) getWorld();
-        if(Greenfoot.mouseClicked(this))
-        {
-            gameWorld.setChoice(false);
-            gameWorld.createChar();
-        }
     }
 }
