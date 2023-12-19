@@ -30,6 +30,9 @@ public class MyWorld extends World
     public boolean fighting = false;
     public boolean madeChoice = false;
     public int defaultSize = 70;
+    public int health = 100;
+    public int block = 100;
+    SimpleTimer introTimer = new SimpleTimer();
 
     public MyWorld()
     {    
@@ -42,6 +45,11 @@ public class MyWorld extends World
     public void act()
     {
         makeChoice();
+    }
+    
+    public void animate()
+    {
+        
     }
     
     public void setChoice(boolean x)

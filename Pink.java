@@ -19,6 +19,9 @@ public class Pink extends Actor
     GreenfootImage pinkLeft[] = new GreenfootImage[5];
     SimpleTimer timer = new SimpleTimer();
     MyWorld world = (MyWorld) getWorld();
+    public int health = 100;
+    public int block = 100; 
+    
 
     public Pink()
     {
@@ -35,7 +38,6 @@ public class Pink extends Actor
         {
             pinkRight[r] = new GreenfootImage("temp_char/pink_right/" + r + ".png");
             pinkRight[r].scale(70, 70);
-            System.out.println("right");
         }
 
         //Left animatino Loop
@@ -73,7 +75,6 @@ public class Pink extends Actor
         timer.mark();
         setImage(pinkRight[imageIndex]);
         imageIndex = (imageIndex + 1) % pinkRight.length;
-        System.out.println("animateRight");
     }
 
     public void animateLeft()
