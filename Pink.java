@@ -110,6 +110,12 @@ public class Pink extends Actor
                 animateRight();
             }
         }
+        
+        if(isTouching(EnemyOne.class))
+        {
+            Greenfoot.delay(50);
+            Greenfoot.setWorld(world.fightWorld);
+        }
 
     }
 }

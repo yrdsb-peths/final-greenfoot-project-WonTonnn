@@ -33,6 +33,9 @@ public class MyWorld extends World
     public int health = 100;
     public int block = 100;
     SimpleTimer introTimer = new SimpleTimer();
+    public FightWorld fightWorld = new FightWorld(this);
+        
+    EnemyOne enemy1 = new EnemyOne();
 
     public MyWorld()
     {    
@@ -47,9 +50,9 @@ public class MyWorld extends World
         makeChoice();
     }
     
-    public void animate()
+    public void addEnemies()
     {
-        
+        addObject(enemy1, 300, 300);
     }
     
     public void setChoice(boolean x)
@@ -99,6 +102,7 @@ public class MyWorld extends World
             blueImg.scale(70,70);
             addObject(blue, 20, 300);
         }
+        addEnemies();
 
     }
 

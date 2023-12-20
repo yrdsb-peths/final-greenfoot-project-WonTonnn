@@ -13,9 +13,21 @@ public class FightWorld extends World
      * Constructor for objects of class FightWorld.
      * 
      */
-    public FightWorld()
+    MyWorld myWorld;
+    
+    public FightWorld(MyWorld myWorld)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        this.myWorld = myWorld;
+        
+    }
+    
+    public void act()
+    {
+        if(Greenfoot.mouseClicked(null))
+        {
+            Greenfoot.setWorld(myWorld);
+        }
     }
 }

@@ -43,13 +43,15 @@ public class PinkHands extends Actor
         mouse = (Greenfoot.getMouseInfo()).getButton();
         if(mouse == 1)
         {
+            System.out.println("attack 1");
 
         }else if(mouse == 2)
         {
+            System.out.println("Attack 2");
             
         }else if(mouse == 3)
         {
-            
+            System.out.println("Attack 3");
         }
     }
 
