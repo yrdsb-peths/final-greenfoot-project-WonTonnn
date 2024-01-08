@@ -21,6 +21,7 @@ public class Pink extends Actor
     MyWorld world = (MyWorld) getWorld();
     public int health = 100;
     public int block = 100; 
+    FightPlace fightWorld = new FightPlace();
     
 
     public Pink()
@@ -114,7 +115,7 @@ public class Pink extends Actor
         if(isTouching(EnemyOne.class))
         {
             Greenfoot.delay(50);
-            Greenfoot.setWorld(world.fightWorld);
+            addObject(fightWorld,0,0);
         }
 
     }

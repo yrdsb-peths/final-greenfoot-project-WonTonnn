@@ -33,7 +33,7 @@ public class MyWorld extends World
     public int health = 100;
     public int block = 100;
     SimpleTimer introTimer = new SimpleTimer();
-    public FightWorld fightWorld = new FightWorld(this);
+    public FightPlace fightWorld = new FightPlace;
         
     EnemyOne enemy1 = new EnemyOne();
 
