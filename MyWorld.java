@@ -30,10 +30,14 @@ public class MyWorld extends World
     public boolean fighting = false;
     public boolean madeChoice = false;
     public int defaultSize = 70;
+    SimpleTimer introTimer = new SimpleTimer();
+    FightPlace fightWorld = new FightPlace();
+    
+    public int healthMax = 100;
+    
     public int health = 100;
     public int block = 100;
-    SimpleTimer introTimer = new SimpleTimer();
-    public FightPlace fightWorld = new FightPlace;
+    public int mana = 100;
         
     EnemyOne enemy1 = new EnemyOne();
 
@@ -112,5 +116,19 @@ public class MyWorld extends World
         batImg.scale(1200,800);
         //addObject(bat, 0,0);
 
+    }
+    
+    public void createFightWorld()
+    {
+        //System.out.println("hiiii");
+        addObject(fightWorld, 300, 200);
+        GreenfootImage fightImg = fightWorld.getImage();
+        fightImg.scale(600,410);
+        
+    }
+    
+    public void addFightStuff()
+    {
+        
     }
 }

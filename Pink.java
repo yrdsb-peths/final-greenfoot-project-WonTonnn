@@ -114,8 +114,12 @@ public class Pink extends Actor
         
         if(isTouching(EnemyOne.class))
         {
-            Greenfoot.delay(50);
-            addObject(fightWorld,0,0);
+            //Greenfoot.delay(50);
+            //System.out.println("hello:");
+            MyWorld world = (MyWorld) getWorld();
+            world.createFightWorld();
+            stop = true;
+
         }
 
     }
