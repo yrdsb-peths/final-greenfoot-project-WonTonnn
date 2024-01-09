@@ -117,6 +117,7 @@ public class Pink extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.createFightWorld();
             stop = true;
+            setLocation(getX() - 5, getY());
 
         }
 

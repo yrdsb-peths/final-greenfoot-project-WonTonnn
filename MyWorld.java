@@ -27,10 +27,10 @@ public class MyWorld extends World
     BlueSplash choiceBlue = new BlueSplash();
     public int length = 100;
     public int width = 100;
-    
+
     public int buttonHeight = 50;
     public int buttonWidth = 200;
-    
+
     public boolean fighting = false;
     public boolean madeChoice = false;
     public int defaultSize = 70;
@@ -64,7 +64,7 @@ public class MyWorld extends World
      * 4 = ultimate
      * 0 = nothing
      */
-    
+
     public boolean myTurn;
 
     EnemyOne enemy1 = new EnemyOne();
@@ -100,40 +100,40 @@ public class MyWorld extends World
         makeChoice();
         updateBars();
 
-        if(fighting = true)
-        {
-            fight();
-            checkWinLose();
-        }
+        fight();
+        checkWinLose();
+
     }
-    
+
     public void fight()
     {
-        if(myTurn = true)
+        if(fighting = true)
         {
-            if(Greenfoot.mouseClicked(attackButton))
+            if(myTurn = true)
             {
-                turnDecision = 1;
-            }
-            
-            if(Greenfoot.mouseClicked(blockButton))
-            {
-                turnDecision = 3;
-            }
-            
-            if(Greenfoot.mouseClicked(skillButton))
-            {
-                turnDecision = 2;
-                removeObject(blockButton);
-                removeObject(attackButton);
-                removeObject(skillButton);
-                
+                if(Greenfoot.mouseClicked(attackButton))
+                {
+                    turnDecision = 1;
+                    removeObject(attackButton);
+                }
+
+                if(Greenfoot.mouseClicked(blockButton))
+                {
+                    turnDecision = 3;
+                }
+
+                if(Greenfoot.mouseClicked(skillButton))
+                {
+                    turnDecision = 2;
+                    removeObject(blockButton);
+                    removeObject(attackButton);
+                    removeObject(skillButton);
+                }
             }
         }
-        System.out.println(turnDecision);
-            
+
     }
-    
+
     public void checkWinLose()
     {
         //if health bar of either side 0, win or lose screen :>
@@ -216,7 +216,7 @@ public class MyWorld extends World
         GreenfootImage fightImg = fightWorld.getImage();
         fightImg.scale(600,410);
         addFightStuff();
-        
+
     }
 
     public void addFightStuff()
@@ -224,11 +224,11 @@ public class MyWorld extends World
         addObject(attackButton, 300, 280);
         addObject(blockButton, 300,330);
         addObject(skillButton, 300, 380);
-        
+
         GreenfootImage atkImage = attackButton.getImage();
         GreenfootImage blkImage = blockButton.getImage();
         GreenfootImage sklImage = skillButton.getImage();
-        
+
         atkImage.scale(buttonWidth, buttonHeight);
         blkImage.scale(buttonWidth, buttonHeight);
         sklImage.scale(buttonWidth, buttonHeight);
