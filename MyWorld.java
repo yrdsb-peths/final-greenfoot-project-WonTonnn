@@ -36,8 +36,11 @@ public class MyWorld extends World
     public int healthMax = 100;
     
     public int health = 100;
+    Label healthBar;
     public int block = 100;
+    Label blockBar;
     public int mana = 100;
+    Label manaBar;
         
     EnemyOne enemy1 = new EnemyOne();
 
@@ -46,7 +49,19 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         createBat();
-        addChoice();        
+        addChoice();     
+        
+        //Create health mana and block bars
+        healthBar = new Label(0,50);
+        manaBar = new Label(0, 50);
+        blockBar = new Label(0, 50);
+        
+        addObject(healthBar, 50, 50);
+        addObject(manaBar, 100, 50);
+        addObject(blockBar, 150, 50);
+        
+        healthBar.setLineColor("#f71616"); 
+        
     }
     
     public void act()
