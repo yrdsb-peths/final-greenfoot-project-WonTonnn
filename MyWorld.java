@@ -42,6 +42,8 @@ public class MyWorld extends World
     AttackButton attackButton = new AttackButton();
     BlockButton blockButton = new BlockButton();
     SkillButton skillButton = new SkillButton();
+    
+    
 
     //Create all bar related stuff
     public int healthMax = 100;
@@ -66,6 +68,7 @@ public class MyWorld extends World
      */
 
     public boolean myTurn;
+    public boolean win;
 
     EnemyOne enemy1 = new EnemyOne();
 
@@ -115,11 +118,13 @@ public class MyWorld extends World
                 {
                     turnDecision = 1;
                     removeObject(attackButton);
+                    //Attack animation and decrease enemy health
                 }
 
                 if(Greenfoot.mouseClicked(blockButton))
                 {
                     turnDecision = 3;
+                    //Block image on until my turn true again
                 }
 
                 if(Greenfoot.mouseClicked(skillButton))
@@ -130,13 +135,25 @@ public class MyWorld extends World
                     removeObject(skillButton);
                 }
             }
+            
+            if(myTurn = false)
+            {
+                enemyAttack();
+                checkWinLose();
+                
+            }
         }
 
+    }
+    
+    public void enemyAttack()
+    {
+        
     }
 
     public void checkWinLose()
     {
-        //if health bar of either side 0, win or lose screen :>
+        
     }
 
     public void updateBars()
