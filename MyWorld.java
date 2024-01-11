@@ -23,6 +23,7 @@ public class MyWorld extends World
      */
     GreenfootImage pinkImg;
     GreenfootImage blueImg;
+    PinkHands pinkHand = new PinkHands();
     PinkieSplash choicePink = new PinkieSplash();
     BlueSplash choiceBlue = new BlueSplash();
     public int length = 100;
@@ -35,6 +36,7 @@ public class MyWorld extends World
     public boolean madeChoice = false;
     public int defaultSize = 70;
     SimpleTimer introTimer = new SimpleTimer();
+    SimpleTimer fightTimer = new SimpleTimer();
     FightPlace fightWorld = new FightPlace();
 
     SimpleTimer turnTimer = new SimpleTimer();
@@ -42,8 +44,7 @@ public class MyWorld extends World
     AttackButton attackButton = new AttackButton();
     BlockButton blockButton = new BlockButton();
     SkillButton skillButton = new SkillButton();
-    
-    
+
 
     //Create all bar related stuff
     public int healthMax = 100;
@@ -67,10 +68,16 @@ public class MyWorld extends World
      * 0 = nothing
      */
 
-    public boolean myTurn;
+    public boolean myTurn = false;
     public boolean win;
 
     EnemyOne enemy1 = new EnemyOne();
+
+    //Player attack animations:
+    GreenfootImage pinkAttack[] = new GreenfootImage[3];
+    GreenfootImage pinkBlock[] = new GreenfootImage[3];
+    GreenfootImage pinkSkill[] = new GreenfootImage[3];
+    GreenfootImage pinkUltimate[] = new GreenfootImage[3];
 
     public MyWorld()
     {    
@@ -80,6 +87,80 @@ public class MyWorld extends World
         addChoice();     
         createBars();
 
+        for(int i = 0; i < pinkAttack.length; i++)
+        {
+            pinkAttack[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
+            pinkAttack[i].scale(70, 70);
+        }
+
+        for(int i = 0; i < pinkBlock.length; i++)
+        {
+            pinkBlock[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
+            pinkBlock[i].scale(70, 70);
+        }
+
+        for(int i = 0; i < pinkSkill.length; i++)
+        {
+            pinkSkill[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
+            pinkSkill[i].scale(70, 70);
+        }
+
+        for(int i = 0; i < pinkUltimate.length; i++)
+        {
+            pinkUltimate[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
+            pinkUltimate[i].scale(70, 70);
+        }
+
+        fightTimer.mark();
+
+    }
+    int imageIndex = 0;
+    public void animateAttack()
+    {
+        if(fightTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        fightTimer.mark();
+        imageIndex = (imageIndex + 1) % pinkAttack.length;
+        pinkHand.setImage(pinkAttack[imageIndex]);
+        if(imageIndex == pinkAttack.length)
+        {
+            removeObject(pinkHand);
+        }
+    }
+
+    public void animateBlock()
+    {
+        if(fightTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        fightTimer.mark();
+        imageIndex = (imageIndex + 1) % pinkBlock.length;
+        pinkHand.setImage(pinkBlock[imageIndex]);
+    }
+
+    public void animateSkill()
+    {
+        if(fightTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        fightTimer.mark();
+        imageIndex = (imageIndex + 1) % pinkSkill.length;
+        pinkHand.setImage(pinkSkill[imageIndex]);
+    }
+
+    public void animateUltimate()
+    {
+        if(fightTimer.millisElapsed() < 100)
+        {
+            return;
+        }
+        fightTimer.mark();
+        imageIndex = (imageIndex + 1) % pinkUltimate.length;
+        pinkHand.setImage(pinkUltimate[imageIndex]);
     }
 
     public void createBars()
@@ -87,15 +168,15 @@ public class MyWorld extends World
         //Create health mana and block bars
         healthBar = new Label(0,50);
         manaBar = new Label(0, 50);
-        blockBar = new Label(0, 50);
+        //blockBar = new Label(0, 50);
 
         addObject(healthBar, 50, 50);
         addObject(manaBar, 120, 50);
-        addObject(blockBar, 190, 50);
+        //addObject(blockBar, 190, 50);
 
         healthBar.setLineColor(healthColor); 
         manaBar.setLineColor(manaColor);
-        blockBar.setLineColor(blockColor);
+        //blockBar.setLineColor(blockColor);
     }
 
     public void act()
@@ -112,18 +193,27 @@ public class MyWorld extends World
     {
         if(fighting = true)
         {
+
             if(myTurn = true)
             {
+
                 if(Greenfoot.mouseClicked(attackButton))
                 {
                     turnDecision = 1;
+                    removeObject(blockButton);
                     removeObject(attackButton);
+                    removeObject(skillButton);
                     //Attack animation and decrease enemy health
                 }
 
                 if(Greenfoot.mouseClicked(blockButton))
                 {
                     turnDecision = 3;
+                    removeObject(blockButton);
+                    removeObject(attackButton);
+                    removeObject(skillButton);
+                    mana = mana - 15;
+                    animateBlock();
                     //Block image on until my turn true again
                 }
 
@@ -135,32 +225,31 @@ public class MyWorld extends World
                     removeObject(skillButton);
                 }
             }
-            
+
             if(myTurn = false)
             {
                 enemyAttack();
                 checkWinLose();
-                
             }
         }
 
     }
-    
+
     public void enemyAttack()
     {
-        
+
     }
 
     public void checkWinLose()
     {
-        
+
     }
 
     public void updateBars()
     {
         healthBar.setValue(health);
         manaBar.setValue(mana);
-        blockBar.setValue(block);
+        //blockBar.setValue(block);
     }
 
     public void addEnemies()
@@ -241,6 +330,12 @@ public class MyWorld extends World
         addObject(attackButton, 300, 280);
         addObject(blockButton, 300,330);
         addObject(skillButton, 300, 380);
+        removeObject(healthBar);
+        removeObject(manaBar);
+        //removeObject(blockBar);
+        addObject(healthBar, 50, 50);
+        addObject(manaBar, 120, 50);
+        //addObject(blockBar, 190, 50);
 
         GreenfootImage atkImage = attackButton.getImage();
         GreenfootImage blkImage = blockButton.getImage();
@@ -249,6 +344,11 @@ public class MyWorld extends World
         atkImage.scale(buttonWidth, buttonHeight);
         blkImage.scale(buttonWidth, buttonHeight);
         sklImage.scale(buttonWidth, buttonHeight);
+
+        addObject(pinkHand, 50, 50);
+        GreenfootImage pinkHandImg = pinkHand.getImage();
+        pinkHandImg.scale(50,50);
+
         fighting = true;
     }
 }

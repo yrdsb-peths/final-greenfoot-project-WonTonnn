@@ -26,21 +26,21 @@ public class PinkHands extends Actor
     {
         for(int i = 0; i < downSwing.length; i++)
         {
-            downSwing[i] = new GreenfootImage("temp_bat/down_swing/down_" + i + ".png");
+            //downSwing[i] = new GreenfootImage("temp_bat/down_swing/down_" + i + ".png");
 
         }
         
         for(int s = 0; s < sideSwing.length; s++)
         {
-            sideSwing[s] = new GreenfootImage("temp_bat/side_swing/side_" + s + ".png");
+            //sideSwing[s] = new GreenfootImage("temp_bat/side_swing/side_" + s + ".png");
         }
 
-        swingTimer.mark();
+        //swingTimer.mark();
     }
 
     public void act()
     {
-        mouse = (Greenfoot.getMouseInfo()).getButton();
+        //mouse = (Greenfoot.getMouseInfo()).getButton();
         if(mouse == 1)
         {
             System.out.println("attack 1");
