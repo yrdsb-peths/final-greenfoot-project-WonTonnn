@@ -45,7 +45,6 @@ public class MyWorld extends World
     BlockButton blockButton = new BlockButton();
     SkillButton skillButton = new SkillButton();
 
-
     //Create all bar related stuff
     public int healthMax = 100;
 
@@ -70,6 +69,7 @@ public class MyWorld extends World
 
     public boolean myTurn = false;
     public boolean win;
+    int animateCount = 0;
 
     EnemyOne enemy1 = new EnemyOne();
 
@@ -91,24 +91,28 @@ public class MyWorld extends World
         {
             pinkAttack[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
             pinkAttack[i].scale(70, 70);
+            animateCount++;
         }
 
-        for(int i = 0; i < pinkBlock.length; i++)
+        for(int r = 0; r < pinkBlock.length; r++)
         {
-            pinkBlock[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
-            pinkBlock[i].scale(70, 70);
+            pinkBlock[r] = new GreenfootImage("temp_char/pink_idle/idle" + r + ".png");
+            pinkBlock[r].scale(70, 70);
+            animateCount++;
         }
 
         for(int i = 0; i < pinkSkill.length; i++)
         {
             pinkSkill[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
             pinkSkill[i].scale(70, 70);
+            animateCount++;
         }
 
         for(int i = 0; i < pinkUltimate.length; i++)
         {
             pinkUltimate[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
             pinkUltimate[i].scale(70, 70);
+            animateCount++;
         }
 
         fightTimer.mark();
@@ -117,28 +121,34 @@ public class MyWorld extends World
     int imageIndex = 0;
     public void animateAttack()
     {
-        if(fightTimer.millisElapsed() < 100)
-        {
-            return;
-        }
-        fightTimer.mark();
-        imageIndex = (imageIndex + 1) % pinkAttack.length;
-        pinkHand.setImage(pinkAttack[imageIndex]);
-        if(imageIndex == pinkAttack.length)
-        {
-            removeObject(pinkHand);
-        }
+            if(fightTimer.millisElapsed() < 100)
+            {
+                return;
+            }
+            fightTimer.mark();
+            imageIndex = (imageIndex + 1) % pinkAttack.length;
+            pinkHand.setImage(pinkAttack[imageIndex]);
+            if(animateCount == pinkAttack.length)
+            {
+                removeObject(pinkHand);
+            }
+            System.out.println("hi");
+        
     }
 
     public void animateBlock()
     {
-        if(fightTimer.millisElapsed() < 100)
+        for(int p = 0; p < pinkBlock.length; p++)
         {
-            return;
+            if(fightTimer.millisElapsed() < 100)
+            {
+                return;
+            }
+            fightTimer.mark();
+            imageIndex = (imageIndex + 1) % pinkBlock.length;
+            System.out.println("hi");
         }
-        fightTimer.mark();
-        imageIndex = (imageIndex + 1) % pinkBlock.length;
-        pinkHand.setImage(pinkBlock[imageIndex]);
+
     }
 
     public void animateSkill()
@@ -203,6 +213,10 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
+                    
+                    animateAttack();
+                   
+
                     //Attack animation and decrease enemy health
                 }
 
@@ -213,7 +227,9 @@ public class MyWorld extends World
                     removeObject(attackButton);
                     removeObject(skillButton);
                     mana = mana - 15;
+
                     animateBlock();
+
                     //Block image on until my turn true again
                 }
 
