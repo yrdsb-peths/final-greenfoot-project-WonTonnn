@@ -58,7 +58,11 @@ public class MyWorld extends World
     Label manaBar;
     Color manaColor = new Color(22, 168, 247);
 
-    public int enemHealth = 100; 
+    public int enemHealth = 500; 
+    Label enemyHealthBar;
+    Color enemyHealthColor = new Color(111, 31, 120);
+    
+    
     public int turnDecision = 0;
     /*
      * 1 = attack
@@ -104,6 +108,13 @@ public class MyWorld extends World
         manaBar.setLineColor(manaColor);
         //blockBar.setLineColor(blockColor);
     }
+    
+    public void createEnemyBars()
+    {
+        enemyHealthBar = new Label(0,50);
+        addObject(enemyHealthBar, 500,50);
+        enemyHealthBar.setLineColor(enemyHealthColor);
+    }
 
     public void act()
     {
@@ -125,6 +136,7 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
+                    enemHealth = enemHealth - 12;
                     turnDecision = 1;
 
                     //animateAttack();
@@ -169,6 +181,7 @@ public class MyWorld extends World
         int enemAtk = Greenfoot.getRandomNumber(2);
         System.out.println("enemy attackin");
         updateBars();
+        updateEnemyBar();
         Greenfoot.delay(100);
         if(enemAtk == 1)
         {
@@ -207,6 +220,11 @@ public class MyWorld extends World
         healthBar.setValue(health);
         manaBar.setValue(mana);
         //blockBar.setValue(block);
+    }
+    
+    public void updateEnemyBar()
+    {
+        enemyHealthBar.setValue(enemHealth);
     }
 
     public void addEnemies()
@@ -278,6 +296,7 @@ public class MyWorld extends World
         addObject(fightWorld, 300, 200);
         GreenfootImage fightImg = fightWorld.getImage();
         fightImg.scale(600,410);
+        createEnemyBars();
         addFightStuff();
 
     }
@@ -293,6 +312,8 @@ public class MyWorld extends World
         addObject(healthBar, 50, 50);
         addObject(manaBar, 120, 50);
         //addObject(blockBar, 190, 50);
+        
+        updateEnemyBar();
 
         GreenfootImage atkImage = attackButton.getImage();
         GreenfootImage blkImage = blockButton.getImage();
