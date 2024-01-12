@@ -29,6 +29,15 @@ public class PinkHands extends Actor
 
     SimpleTimer fightTimer = new SimpleTimer();
     public int animateCount = 0;
+    
+    /*
+     * 1 = attack
+     * 2 = skill
+     * 3 = block
+     * 4 = ultimate
+     * 0 = nothing
+     */
+
 
     public PinkHands()
     {
@@ -43,6 +52,19 @@ public class PinkHands extends Actor
             if(world.turnDecision == 1)
             {
                 animateAttack();
+                world.enemyAttack();
+            }else if(world.turnDecision == 2)
+            {
+                animateSkill();
+                world.enemyAttack();
+            }else if(world.turnDecision == 3)
+            {
+                animateBlock();
+                world.enemyAttack();
+            }else if(world.turnDecision == 4)
+            {
+                animateUltimate();
+                world.enemyAttack();
             }
         } 
     }
@@ -50,7 +72,7 @@ public class PinkHands extends Actor
     public void animateAttack()
     {
         MyWorld world = (MyWorld) getWorld();
-        for(int i = 0; i <= pinkAttack.length; i++)
+        for(int i = 0; i < pinkAttack.length; i++)
         {
             pinkAttack[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
             pinkAttack[i].scale(50,50);
@@ -60,7 +82,56 @@ public class PinkHands extends Actor
         }
         world.myTurn = false;
         world.turnDecision = 0;
+        
 
+    }
+    
+    public void animateBlock()
+    {
+        MyWorld world = (MyWorld) getWorld();
+        for(int i = 0; i < pinkBlock.length; i++)
+        {
+            pinkBlock[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
+            pinkBlock[i].scale(50,50);
+            setImage(pinkBlock[i]);
+            Greenfoot.delay(10);
+            animateCount++;
+        }
+        world.myTurn = false;
+        world.turnDecision = 0;
+       
+    }
+    
+    public void animateSkill()
+    {
+        MyWorld world = (MyWorld) getWorld();
+        for(int i = 0; i < pinkSkill.length; i++)
+        {
+            pinkSkill[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
+            pinkSkill[i].scale(50,50);
+            setImage(pinkSkill[i]);
+            Greenfoot.delay(10);
+            animateCount++;
+        }
+        world.myTurn = false;
+        world.turnDecision = 0;
+        
+    }
+    
+    public void animateUltimate()
+    {
+        MyWorld world = (MyWorld) getWorld();
+        for(int i = 0; i < pinkUltimate.length; i++)
+        {
+            pinkUltimate[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
+            pinkUltimate[i].scale(50,50);
+            setImage(pinkUltimate[i]);
+            Greenfoot.delay(10);
+            animateCount++;
+        }
+        world.myTurn = false;
+        world.turnDecision = 0;
+        
     }
 
 }

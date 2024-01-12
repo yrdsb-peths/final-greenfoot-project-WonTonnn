@@ -58,6 +58,7 @@ public class MyWorld extends World
     Label manaBar;
     Color manaColor = new Color(22, 168, 247);
 
+    public int enemHealth = 100; 
     public int turnDecision = 0;
     /*
      * 1 = attack
@@ -86,90 +87,6 @@ public class MyWorld extends World
         createBat();
         addChoice();     
         createBars();
-
-        for(int i = 0; i < pinkAttack.length; i++)
-        {
-            pinkAttack[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
-            pinkAttack[i].scale(70, 70);
-            animateCount++;
-        }
-
-        for(int r = 0; r < pinkBlock.length; r++)
-        {
-            pinkBlock[r] = new GreenfootImage("temp_char/pink_idle/idle" + r + ".png");
-            pinkBlock[r].scale(70, 70);
-            animateCount++;
-        }
-
-        for(int i = 0; i < pinkSkill.length; i++)
-        {
-            pinkSkill[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
-            pinkSkill[i].scale(70, 70);
-            animateCount++;
-        }
-
-        for(int i = 0; i < pinkUltimate.length; i++)
-        {
-            pinkUltimate[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
-            pinkUltimate[i].scale(70, 70);
-            animateCount++;
-        }
-
-        fightTimer.mark();
-
-    }
-    int imageIndex = 0;
-    public void animateAttack()
-    {
-            for(int i = 0; i < pinkAttack.length; i++)
-        {
-            pinkAttack[i] = new GreenfootImage("explosion/" + i + ".png");
-            //setImage(pinkAttack[i]);
-            Greenfoot.delay(10);
-        }
-            if(animateCount == pinkAttack.length)
-            {
-                removeObject(pinkHand);
-            }
-            System.out.println("hi");
-        
-    }
-
-    public void animateBlock()
-    {
-        for(int p = 0; p < pinkBlock.length; p++)
-        {
-            if(fightTimer.millisElapsed() < 100)
-            {
-                return;
-            }
-            fightTimer.mark();
-            imageIndex = (imageIndex + 1) % pinkBlock.length;
-            System.out.println("hi");
-        }
-
-    }
-
-    public void animateSkill()
-    {
-        if(fightTimer.millisElapsed() < 100)
-        {
-            return;
-        }
-        fightTimer.mark();
-        imageIndex = (imageIndex + 1) % pinkSkill.length;
-        pinkHand.setImage(pinkSkill[imageIndex]);
-    }
-
-    public void animateUltimate()
-    {
-        if(fightTimer.millisElapsed() < 100)
-        {
-            return;
-        }
-        fightTimer.mark();
-        imageIndex = (imageIndex + 1) % pinkUltimate.length;
-        pinkHand.setImage(pinkUltimate[imageIndex]);
     }
 
     public void createBars()
@@ -192,10 +109,7 @@ public class MyWorld extends World
     {
         makeChoice();
         updateBars();
-
         fight();
-        checkWinLose();
-
     }
 
     public void fight()
@@ -208,36 +122,36 @@ public class MyWorld extends World
 
                 if(Greenfoot.mouseClicked(attackButton))
                 {
-                    turnDecision = 1;
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
-                    
+                    turnDecision = 1;
+
                     //animateAttack();
-                   
 
                     //Attack animation and decrease enemy health
                 }
 
                 if(Greenfoot.mouseClicked(blockButton))
                 {
-                    turnDecision = 3;
+                    mana = mana - 15;
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
-                    mana = mana - 15;
-
-                    animateBlock();
+                    turnDecision = 3;
 
                     //Block image on until my turn true again
                 }
 
                 if(Greenfoot.mouseClicked(skillButton))
                 {
-                    turnDecision = 2;
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
+
+                    //add skill image and ultimate
+                    //choose between skill and ultimate in if statement = 2 or 4
+
                 }
             }
 
@@ -252,14 +166,42 @@ public class MyWorld extends World
 
     public void enemyAttack()
     {
+        int enemAtk = Greenfoot.getRandomNumber(2);
+        System.out.println("enemy attackin");
+        updateBars();
+        Greenfoot.delay(100);
+        if(enemAtk == 1)
+        {
+            health = health - 10;
+            System.out.println("enemy attackin 1");
+        }else if(enemAtk == 2)
+        {
+            health = health - 13;
+            System.out.println("enemy attackin 2");
+        }else if(enemAtk == 0)
+        {
+            health = health - 14;
+            System.out.println("enemy attackin 3");
+        }
+        checkWinLose();
 
     }
 
     public void checkWinLose()
     {
 
-    }
+        if(health <= 0)
+        {
+            System.out.println("dead u woe");
+        } else if(enemHealth == 0)
+        {
+            System.out.println("Enemy dead");
+        } else {
+            addFightStuff();
+            myTurn = true;
+        }  
 
+    }
     public void updateBars()
     {
         healthBar.setValue(health);
@@ -360,9 +302,9 @@ public class MyWorld extends World
         blkImage.scale(buttonWidth, buttonHeight);
         sklImage.scale(buttonWidth, buttonHeight);
 
-        addObject(pinkHand, 50, 50);
+        addObject(pinkHand, 100, 100);
         GreenfootImage pinkHandImg = pinkHand.getImage();
-        pinkHandImg.scale(50,50);
+        pinkHandImg.scale(100,100);
 
         fighting = true;
     }
