@@ -22,37 +22,45 @@ public class PinkHands extends Actor
     GreenfootImage blockSwing[] = new GreenfootImage[2];
     SimpleTimer swingTimer = new SimpleTimer();
 
+    GreenfootImage pinkAttack[] = new GreenfootImage[3];
+    GreenfootImage pinkBlock[] = new GreenfootImage[3];
+    GreenfootImage pinkSkill[] = new GreenfootImage[3];
+    GreenfootImage pinkUltimate[] = new GreenfootImage[3];
+
+    SimpleTimer fightTimer = new SimpleTimer();
+    public int animateCount = 0;
+
     public PinkHands()
     {
-        for(int i = 0; i < downSwing.length; i++)
-        {
-            //downSwing[i] = new GreenfootImage("temp_bat/down_swing/down_" + i + ".png");
-
-        }
         
-        for(int s = 0; s < sideSwing.length; s++)
-        {
-            //sideSwing[s] = new GreenfootImage("temp_bat/side_swing/side_" + s + ".png");
-        }
-
-        //swingTimer.mark();
     }
 
     public void act()
     {
-        //mouse = (Greenfoot.getMouseInfo()).getButton();
-        if(mouse == 1)
+        MyWorld world = (MyWorld) getWorld();
+        if(world.myTurn = true)
         {
-            System.out.println("attack 1");
+            if(world.turnDecision == 1)
+            {
+                animateAttack();
+            }
+        } 
+    }
 
-        }else if(mouse == 2)
+    public void animateAttack()
+    {
+        MyWorld world = (MyWorld) getWorld();
+        for(int i = 0; i <= pinkAttack.length; i++)
         {
-            System.out.println("Attack 2");
-            
-        }else if(mouse == 3)
-        {
-            System.out.println("Attack 3");
+            pinkAttack[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
+            pinkAttack[i].scale(50,50);
+            setImage(pinkAttack[i]);
+            Greenfoot.delay(10);
+            animateCount++;
         }
+        world.myTurn = false;
+        world.turnDecision = 0;
+
     }
 
 }

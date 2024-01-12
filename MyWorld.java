@@ -121,13 +121,12 @@ public class MyWorld extends World
     int imageIndex = 0;
     public void animateAttack()
     {
-            if(fightTimer.millisElapsed() < 100)
-            {
-                return;
-            }
-            fightTimer.mark();
-            imageIndex = (imageIndex + 1) % pinkAttack.length;
-            pinkHand.setImage(pinkAttack[imageIndex]);
+            for(int i = 0; i < pinkAttack.length; i++)
+        {
+            pinkAttack[i] = new GreenfootImage("explosion/" + i + ".png");
+            //setImage(pinkAttack[i]);
+            Greenfoot.delay(10);
+        }
             if(animateCount == pinkAttack.length)
             {
                 removeObject(pinkHand);
@@ -214,7 +213,7 @@ public class MyWorld extends World
                     removeObject(attackButton);
                     removeObject(skillButton);
                     
-                    animateAttack();
+                    //animateAttack();
                    
 
                     //Attack animation and decrease enemy health
