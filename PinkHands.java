@@ -98,7 +98,7 @@ public class PinkHands extends Actor
             animateCount++;
         }
         world.myTurn = false;
-        world.turnDecision = 0;
+
        
     }
     

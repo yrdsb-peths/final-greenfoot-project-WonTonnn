@@ -196,6 +196,12 @@ public class MyWorld extends World
             health = health - 14;
             System.out.println("enemy attackin 3");
         }
+        
+        if(turnDecision == 3)
+        {
+            health = health + 5;
+            turnDecision = 0;
+        }
         checkWinLose();
 
     }
