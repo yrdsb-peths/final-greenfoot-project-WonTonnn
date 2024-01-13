@@ -16,16 +16,20 @@ public class TitleScreen extends World
     StartButton button = new StartButton();
     public static boolean askChoice;
     public static boolean choice;
+    TitleCard titlecard = new TitleCard();
+    
     public TitleScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         addButton();
+        
 
     }
     public void addButton()
     {
-        addObject(button, 300, 200);
+        addObject(titlecard, 300, 200);
+        addObject(button, 280, 180);
     }
 
     public void addChoice()

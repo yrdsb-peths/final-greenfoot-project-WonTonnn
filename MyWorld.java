@@ -136,8 +136,10 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
-                    enemHealth = enemHealth - 12;
+                    System.out.println(turnDecision);
                     turnDecision = 1;
+                    System.out.println(turnDecision);
+                    //enemHealth = enemHealth - 12;
 
                     //animateAttack();
 
@@ -309,9 +311,9 @@ public class MyWorld extends World
 
     public void addFightStuff()
     {
-        addObject(attackButton, 300, 280);
-        addObject(blockButton, 300,330);
-        addObject(skillButton, 300, 380);
+        addObject(attackButton, 300,190);
+        addObject(blockButton, 300,195);
+        addObject(skillButton, 300,200);
         removeObject(healthBar);
         removeObject(manaBar);
         //removeObject(blockBar);
@@ -324,10 +326,6 @@ public class MyWorld extends World
         GreenfootImage atkImage = attackButton.getImage();
         GreenfootImage blkImage = blockButton.getImage();
         GreenfootImage sklImage = skillButton.getImage();
-
-        atkImage.scale(buttonWidth, buttonHeight);
-        blkImage.scale(buttonWidth, buttonHeight);
-        sklImage.scale(buttonWidth, buttonHeight);
 
         addObject(pinkHand, 100, 100);
         GreenfootImage pinkHandImg = pinkHand.getImage();
