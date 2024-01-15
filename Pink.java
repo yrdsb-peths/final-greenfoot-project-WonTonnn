@@ -14,9 +14,9 @@ public class Pink extends Actor
      */
     public boolean stop = false; 
     public boolean left;
-    GreenfootImage pinkIdle[] = new GreenfootImage[3];
+    GreenfootImage pinkIdle[] = new GreenfootImage[7];
     GreenfootImage pinkRight[] = new GreenfootImage[5];
-    GreenfootImage pinkLeft[] = new GreenfootImage[5];
+    GreenfootImage pinkLeft[] = new GreenfootImage[4];
     SimpleTimer timer = new SimpleTimer();
     MyWorld world = (MyWorld) getWorld();
     public int health = 100;
@@ -30,8 +30,8 @@ public class Pink extends Actor
         //Idle animation loop
         for(int i = 0; i < pinkIdle.length; i++)
         {
-            pinkIdle[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
-            pinkIdle[i].scale(70, 70);
+            pinkIdle[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".jpg");
+            pinkIdle[i].scale(100, 70);
         }
 
         // right animation loo
@@ -45,7 +45,7 @@ public class Pink extends Actor
 
         for(int l = 0; l < pinkLeft.length; l++)
         {
-            pinkLeft[l] = new GreenfootImage("temp_char/pink_left/" + l + ".png");
+            pinkLeft[l] = new GreenfootImage("temp_char/pink_left/" + l + ".jpg");
             pinkLeft[l].scale(70, 70);
         }
 
