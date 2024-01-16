@@ -51,13 +51,13 @@ public class PinkHands extends Actor
         {
             if(world.turnDecision == 1)
             {
-                System.out.println("hi one");
                 animateAttack();
-                System.out.println("hi 2 ");
+                
                 world.enemyAttack();
-                System.out.println("hi3");
+               
             }else if(world.turnDecision == 2)
             {
+                System.out.println("Hi blockie");
                 animateSkill();
                 world.enemyAttack();
             }else if(world.turnDecision == 3)
@@ -94,7 +94,7 @@ public class PinkHands extends Actor
         MyWorld world = (MyWorld) getWorld();
         for(int i = 0; i < pinkBlock.length; i++)
         {
-            pinkBlock[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".png");
+            pinkBlock[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".PNG");
             pinkBlock[i].scale(50,50);
             setImage(pinkBlock[i]);
             Greenfoot.delay(10);

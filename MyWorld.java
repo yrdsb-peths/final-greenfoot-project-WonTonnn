@@ -305,9 +305,9 @@ public class MyWorld extends World
 
     public void addFightStuff()
     {
-        addObject(attackButton, 300,190);
-        addObject(blockButton, 300,195);
-        addObject(skillButton, 300,200);
+        addObject(attackButton, 300,290);
+        addObject(blockButton, 300,335);
+        addObject(skillButton, 300,380);
         removeObject(healthBar);
         removeObject(manaBar);
         //removeObject(blockBar);
