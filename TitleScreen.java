@@ -17,6 +17,7 @@ public class TitleScreen extends World
     public static boolean askChoice;
     public static boolean choice;
     TitleCard titlecard = new TitleCard();
+    Label tutorial = new Label(10, 10);
     
     public TitleScreen()
     {    

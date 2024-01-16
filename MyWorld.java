@@ -218,6 +218,7 @@ public class MyWorld extends World
             health = health - 14;
             System.out.println("enemy attackin 3");
         }
+        
         checkWinLose();
 
     }
@@ -227,7 +228,8 @@ public class MyWorld extends World
 
         if(health <= 0)
         {
-            System.out.println("dead u woe");
+            createLoseScreen();
+            
         } else if(enemOneHealth == 0)
         {
             System.out.println("Enemy dead");
@@ -239,6 +241,10 @@ public class MyWorld extends World
     }
     public void updateBars()
     {
+        if(turnDecision == 3)
+        {
+            health = health + 10;
+        }
         healthBar.setValue(health);
         manaBar.setValue(mana);
         //blockBar.setValue(block);
@@ -346,5 +352,11 @@ public class MyWorld extends World
         pinkHandImg.scale(100,100);
 
         fighting = true;
+    }
+    
+    public void createLoseScreen()
+    {
+        LoseScreen loseScreen = new LoseScreen();
+        Greenfoot.setWorld(loseScreen);
     }
 }
