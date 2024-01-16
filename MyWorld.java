@@ -58,8 +58,8 @@ public class MyWorld extends World
     Label manaBar;
     Color manaColor = new Color(22, 168, 247);
 
-    public int enemHealth = 500; 
-    Label enemyHealthBar;
+    public int enemOneHealth = 500; 
+    Label enemyOneHealthBar;
     Color enemyHealthColor = new Color(111, 31, 120);
     
     
@@ -77,6 +77,7 @@ public class MyWorld extends World
     int animateCount = 0;
 
     EnemyOne enemy1 = new EnemyOne();
+    EnemyTwo enemy2 = new EnemyTwo();
 
     //Player attack animations:
     GreenfootImage pinkAttack[] = new GreenfootImage[3];
@@ -116,9 +117,9 @@ public class MyWorld extends World
     
     public void createEnemyBars()
     {
-        enemyHealthBar = new Label(0,50);
-        addObject(enemyHealthBar, 500,50);
-        enemyHealthBar.setLineColor(enemyHealthColor);
+        enemyOneHealthBar = new Label(0,50);
+        addObject(enemyOneHealthBar, 500,50);
+        enemyOneHealthBar.setLineColor(enemyHealthColor);
     }
 
     public void act()
@@ -155,7 +156,7 @@ public class MyWorld extends World
                     System.out.println(turnDecision);
                     turnDecision = 1;
                     System.out.println(turnDecision);
-                    enemHealth = enemHealth - 12;
+                    enemOneHealth = enemOneHealth - 12;
 
                     //animateAttack();
 
@@ -179,7 +180,8 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
-                    enemHealth = enemHealth - 40;
+                    enemOneHealth = enemOneHealth - 40;
+                    turnDecision = 2;
 
                     //add skill image and ultimate
                     //choose between skill and ultimate in if statement = 2 or 4
@@ -226,7 +228,7 @@ public class MyWorld extends World
         if(health <= 0)
         {
             System.out.println("dead u woe");
-        } else if(enemHealth == 0)
+        } else if(enemOneHealth == 0)
         {
             System.out.println("Enemy dead");
         } else {
@@ -244,7 +246,7 @@ public class MyWorld extends World
     
     public void updateEnemyBar()
     {
-        enemyHealthBar.setValue(enemHealth);
+        enemyOneHealthBar.setValue(enemOneHealth);
     }
 
     public void addEnemies()
@@ -296,7 +298,7 @@ public class MyWorld extends World
         }else if(choice == false){
 
             GreenfootImage blueImg = blue.getImage();
-            blueImg.scale(70,70);
+            blueImg.scale(60,70);
             addObject(blue, 20, 300);
         }
         addEnemies();

@@ -52,12 +52,10 @@ public class PinkHands extends Actor
             if(world.turnDecision == 1)
             {
                 animateAttack();
-                
                 world.enemyAttack();
                
             }else if(world.turnDecision == 2)
             {
-                System.out.println("Hi blockie");
                 animateSkill();
                 world.enemyAttack();
             }else if(world.turnDecision == 3)

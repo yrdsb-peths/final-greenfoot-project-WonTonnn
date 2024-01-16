@@ -14,7 +14,7 @@ public class Pink extends Actor
      */
     public boolean stop = false; 
     public boolean left;
-    GreenfootImage pinkIdle[] = new GreenfootImage[6];
+    GreenfootImage pinkIdle[] = new GreenfootImage[9];
     GreenfootImage pinkRight[] = new GreenfootImage[6];
     GreenfootImage pinkLeft[] = new GreenfootImage[6];
     SimpleTimer timer = new SimpleTimer();
@@ -22,6 +22,7 @@ public class Pink extends Actor
     public int health = 100;
     public int block = 100; 
     FightPlace fightWorld = new FightPlace();
+    int keyDowner = 0;
     
 
     public Pink()
@@ -99,27 +100,48 @@ public class Pink extends Actor
                 int random = Greenfoot.getRandomNumber(10);
                 if(random == 9)
                 {
+                    keyDowner = 0;
                     animateIdle();
                     random = Greenfoot.getRandomNumber(10);
                 }
                 
                 
             }
+            
 
             if(Greenfoot.isKeyDown("a"))
             {
+                if(keyDowner == 0)
+                {
+                    imageIndex = 0;
+                    keyDowner = 1;
+                }
                 setLocation(getX() - 2, getY());
                 animateLeft();
             }
 
             if(Greenfoot.isKeyDown("d"))
             {
+                if(keyDowner == 0)
+                {
+                    imageIndex = 0;
+                    keyDowner = 1;
+                }
                 setLocation(getX() + 2, getY());
                 animateRight();
             }
         }
         
         if(isTouching(EnemyOne.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.createFightWorld();
+            stop = true;
+            setLocation(getX() - 5, getY());
+
+        }
+        
+        if(isTouching(EnemyTwo.class))
         {
             MyWorld world = (MyWorld) getWorld();
             world.createFightWorld();
