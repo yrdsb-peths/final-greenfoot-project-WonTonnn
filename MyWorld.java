@@ -83,6 +83,11 @@ public class MyWorld extends World
     GreenfootImage pinkBlock[] = new GreenfootImage[3];
     GreenfootImage pinkSkill[] = new GreenfootImage[3];
     GreenfootImage pinkUltimate[] = new GreenfootImage[3];
+    
+    GreenfootSound main = new GreenfootSound("homeForFlowers.mp3");
+    GreenfootSound battle = new GreenfootSound("tussleAmongTrees.mp3");
+    GreenfootSound loseSound = new GreenfootSound("okToTryAgain.mp3");
+    GreenfootSound winSound = new GreenfootSound("howdWeDo.mp3");
 
     public MyWorld()
     {    
@@ -118,9 +123,20 @@ public class MyWorld extends World
 
     public void act()
     {
+        playMusic();
         makeChoice();
         updateBars();
         fight();
+    }
+    
+    public void playMusic()
+    {
+        if(fighting = false)
+        {
+            main.playLoop();
+        }else{
+            battle.playLoop();
+        }
     }
 
     public void fight()
@@ -139,7 +155,7 @@ public class MyWorld extends World
                     System.out.println(turnDecision);
                     turnDecision = 1;
                     System.out.println(turnDecision);
-                    //enemHealth = enemHealth - 12;
+                    enemHealth = enemHealth - 12;
 
                     //animateAttack();
 
@@ -159,9 +175,11 @@ public class MyWorld extends World
 
                 if(Greenfoot.mouseClicked(skillButton))
                 {
+                    mana = mana - 25;
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
+                    enemHealth = enemHealth - 40;
 
                     //add skill image and ultimate
                     //choose between skill and ultimate in if statement = 2 or 4
@@ -272,8 +290,8 @@ public class MyWorld extends World
         if(choice == true)
         {
             GreenfootImage pinkImg = pink.getImage();
-            pinkImg.scale(70,70);
-            addObject(pink, 20, 300);
+            pinkImg.scale(120,100);
+            addObject(pink, 20, 290);
 
         }else if(choice == false){
 

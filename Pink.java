@@ -37,8 +37,8 @@ public class Pink extends Actor
         // right animation loo
         for(int r = 0; r < pinkRight.length; r++)
         {
-            pinkRight[r] = new GreenfootImage("temp_char/pink_right/" + r + ".PNG");
-            pinkRight[r].scale(120, 100);
+            pinkRight[r] = new GreenfootImage("temp_char/pink_right/" + r + ".png");
+            pinkRight[r].scale(110, 80);
         }
 
         //Left animatino Loop
@@ -46,7 +46,7 @@ public class Pink extends Actor
         for(int l = 0; l < pinkLeft.length; l++)
         {
             pinkLeft[l] = new GreenfootImage("temp_char/pink_left/" + l + ".PNG");
-            pinkLeft[l].scale(120, 110);
+            pinkLeft[l].scale(110, 80);
         }
 
         timer.mark();
@@ -58,7 +58,7 @@ public class Pink extends Actor
     int imageIndex = 0;
     public void animateIdle()
     {
-        if(timer.millisElapsed() < 100)
+        if(timer.millisElapsed() < 200)
         {
             return;
         }
@@ -96,9 +96,14 @@ public class Pink extends Actor
         {
             if(!Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("d"))
             {
-                //int random = Randomizer.next(0,10);
+                int random = Greenfoot.getRandomNumber(10);
+                if(random == 9)
+                {
+                    animateIdle();
+                    random = Greenfoot.getRandomNumber(10);
+                }
                 
-                animateIdle();
+                
             }
 
             if(Greenfoot.isKeyDown("a"))
