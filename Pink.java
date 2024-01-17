@@ -93,7 +93,7 @@ public class Pink extends Actor
     public void act()
     {
         
-        if(getX() == 600)
+        if(getX() >= 590 )
         {
             MyWorld world = (MyWorld) getWorld();
             world.changeWorld();
@@ -161,5 +161,15 @@ public class Pink extends Actor
     public void canMove()
     {
         stop = false;;
+    }
+    
+    public void setHealth(int x)
+    {
+        health = x;
+    }
+    
+    public int getHealth()
+    {
+        return health;
     }
 }

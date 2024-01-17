@@ -63,6 +63,8 @@ public class MyWorld extends World
     Color enemyHealthColor = new Color(111, 31, 120);
     
     
+    
+    
     public int turnDecision = 0;
     /*
      * 1 = attack
@@ -379,8 +381,10 @@ public class MyWorld extends World
         removeObject(skillButton);
         createBars();
         removeObject(fightWorld);
+        removeObject(enemyOneHealthBar);
         pink.canMove();
         blue.canMove();
+        removeObject(enemy1);
         
     }
     
@@ -388,12 +392,30 @@ public class MyWorld extends World
     {
         if(whichWorld == 0)
         {
-            
+            GreenfootImage world2 = new GreenfootImage("images/world2pic.jpg");
+            this.setBackground(world2);
+            if(choice = true)
+            {
+                pink.setLocation(0,300);
+            }else
+            {
+                blue.setLocation(0,300);
+            }
+            whichWorld = 1;
+        }else if(whichWorld == 1)
+        {
+            GreenfootImage world1 = new GreenfootImage("images/world1pic.jpg");
+            this.setBackground(world1);
+            if(choice = true)
+            {
+                pink.setLocation(0,300);
+            }else
+            {
+                blue.setLocation(0,300);
+            }
+            whichWorld = 0;
         }
         
-        if(whichWorld == 1)
-        {
-            
-        }
+        
     }
 }

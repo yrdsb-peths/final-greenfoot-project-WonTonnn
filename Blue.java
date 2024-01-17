@@ -89,6 +89,11 @@ public class Blue extends Actor
 
     public void act()
     {
+        if(getX() >= 580 )
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.changeWorld();
+        }
 
         if(stop != true)
         {
