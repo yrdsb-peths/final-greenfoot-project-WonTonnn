@@ -58,7 +58,7 @@ public class MyWorld extends World
     Label manaBar;
     Color manaColor = new Color(22, 168, 247);
 
-    public int enemOneHealth = 500; 
+    public int enemOneHealth = 5; 
     Label enemyOneHealthBar;
     Color enemyHealthColor = new Color(111, 31, 120);
     
@@ -230,9 +230,9 @@ public class MyWorld extends World
         {
             createLoseScreen();
             
-        } else if(enemOneHealth == 0)
+        } else if(enemOneHealth <= 0)
         {
-            System.out.println("Enemy dead");
+            removeFightStuff();
         } else {
             addFightStuff();
             myTurn = true;
@@ -316,7 +316,7 @@ public class MyWorld extends World
         GreenfootImage batImg = bat.getImage();
         batImg.scale(1200,800);
         //addObject(bat, 0,0);
-
+        
     }
 
     public void createFightWorld()
@@ -358,5 +358,20 @@ public class MyWorld extends World
     {
         LoseScreen loseScreen = new LoseScreen();
         Greenfoot.setWorld(loseScreen);
+    }
+    
+    public void winScreen()
+    {
+        removeFightStuff();
+    }
+    
+    public void removeFightStuff()
+    {
+        removeObject(attackButton);
+        removeObject(blockButton);
+        removeObject(skillButton);
+        createBars();
+        removeObject(fightWorld);
+        
     }
 }
