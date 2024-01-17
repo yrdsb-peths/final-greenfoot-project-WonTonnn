@@ -10,7 +10,7 @@ public class Blue extends Actor
 {
     public boolean stop = false; 
     public boolean left;
-    GreenfootImage blueIdle[] = new GreenfootImage[11];
+    GreenfootImage blueIdle[] = new GreenfootImage[13];
     GreenfootImage blueRight[] = new GreenfootImage[6];
     GreenfootImage blueLeft[] = new GreenfootImage[6];
     SimpleTimer timer = new SimpleTimer();
@@ -89,7 +89,7 @@ public class Blue extends Actor
 
     public void act()
     {
-        if(getX() >= 580 )
+        if(getX() >= 590 )
         {
             MyWorld world = (MyWorld) getWorld();
             world.changeWorld();
@@ -155,6 +155,6 @@ public class Blue extends Actor
     
     public void canMove()
     {
-        stop = false;;
+        stop = false;
     }
 }

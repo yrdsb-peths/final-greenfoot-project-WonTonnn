@@ -101,7 +101,6 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
-        createBat();
         addChoice();     
         createBars();
     }
@@ -326,14 +325,6 @@ public class MyWorld extends World
 
     }
 
-    public void createBat()
-    {
-        GreenfootImage batImg = bat.getImage();
-        batImg.scale(1200,800);
-        //addObject(bat, 0,0);
-
-    }
-
     public void createFightWorld()
     {
         addObject(fightWorld, 300, 200);
@@ -386,6 +377,8 @@ public class MyWorld extends World
         removeObject(attackButton);
         removeObject(blockButton);
         removeObject(skillButton);
+        removeObject(healthBar);
+        removeObject(manaBar);
         createBars();
         removeObject(fightWorld);
         removeObject(enemyOneHealthBar);
@@ -404,12 +397,15 @@ public class MyWorld extends World
             this.setBackground(world2);
             
             addEnemies();
-            if(choice = true)
+            if(choice == true)
             {
                 pink.setLocation(0,300);
-            }else
+                System.out.println("pinMove");
+            }
+            if (choice == false)
             {
                 blue.setLocation(0,300);
+                System.out.println("Moved");
             }
             whichWorld = 1;
         }else if(whichWorld == 1)
@@ -417,10 +413,11 @@ public class MyWorld extends World
             GreenfootImage world1 = new GreenfootImage("images/world1pic.jpg");
             this.setBackground(world1);
             addEnemies();
-            if(choice = true)
+            if(choice == true)
             {
                 pink.setLocation(0,300);
-            }else
+            }
+            if (choice == false)
             {
                 blue.setLocation(0,300);
             }
