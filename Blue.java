@@ -133,7 +133,7 @@ public class Blue extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.createFightWorld();
             stop = true;
-            setLocation(getX() - 5, getY());
+            setLocation(getX() - 20, getY());
 
         }
         
@@ -146,5 +146,10 @@ public class Blue extends Actor
 
         }
 
+    }
+    
+    public void canMove()
+    {
+        stop = false;;
     }
 }

@@ -92,6 +92,12 @@ public class Pink extends Actor
 
     public void act()
     {
+        
+        if(getX() == 600)
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.changeWorld();
+        }
 
         if(stop != true)
         {
@@ -146,9 +152,14 @@ public class Pink extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.createFightWorld();
             stop = true;
-            setLocation(getX() - 5, getY());
+            setLocation(getX() - 25, getY());
 
         }
 
+    }
+    
+    public void canMove()
+    {
+        stop = false;;
     }
 }

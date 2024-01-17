@@ -74,6 +74,12 @@ public class MyWorld extends World
 
     public boolean myTurn = false;
     public boolean win;
+    public int whichWorld = 0;
+    
+    /*
+     * world 1 = 0
+     * world 2 = 1
+     */
     int animateCount = 0;
 
     EnemyOne enemy1 = new EnemyOne();
@@ -336,6 +342,7 @@ public class MyWorld extends World
         addObject(skillButton, 300,380);
         removeObject(healthBar);
         removeObject(manaBar);
+        removeObject(enemy1);
         //removeObject(blockBar);
         addObject(healthBar, 50, 50);
         addObject(manaBar, 120, 50);
@@ -372,6 +379,21 @@ public class MyWorld extends World
         removeObject(skillButton);
         createBars();
         removeObject(fightWorld);
+        pink.canMove();
+        blue.canMove();
         
+    }
+    
+    public void changeWorld()
+    {
+        if(whichWorld == 0)
+        {
+            
+        }
+        
+        if(whichWorld == 1)
+        {
+            
+        }
     }
 }
