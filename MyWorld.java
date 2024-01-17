@@ -62,7 +62,6 @@ public class MyWorld extends World
     Label enemyOneHealthBar;
     Color enemyHealthColor = new Color(111, 31, 120);
 
-    
     public int turnDecision = 0;
     /*
      * 1 = attack
@@ -81,8 +80,10 @@ public class MyWorld extends World
      * world 2 = 1
      */
     int animateCount = 0;
+    boolean lose = false;
 
     int whichEnemy;
+    int enemiesBeaten = 0;
     EnemyOne enemy1 = new EnemyOne();
     EnemyTwo enemy2 = new EnemyTwo();
 
@@ -138,20 +139,29 @@ public class MyWorld extends World
 
     public void playMusic()
     {
-        if(fighting = false)
+        if(fighting == false)
         {
+            battle.stop();
             main.playLoop();
         }else{
+            main.stop();
             battle.playLoop();
+        }
+        
+        if(lose == true)
+        {
+            battle.stop();
+            main.stop();
+            loseSound.playLoop();
         }
     }
 
     public void fight()
     {
-        if(fighting = true)
+        if(fighting == true)
         {
 
-            if(myTurn = true)
+            if(myTurn == true)
             {
 
                 if(Greenfoot.mouseClicked(attackButton))
@@ -195,7 +205,7 @@ public class MyWorld extends World
                 }
             }
 
-            if(myTurn = false)
+            if(myTurn == false)
             {
                 enemyAttack();
                 checkWinLose();
@@ -234,11 +244,14 @@ public class MyWorld extends World
 
         if(health <= 0)
         {
+            lose = true;
+            act();
             createLoseScreen();
-
         } else if(enemOneHealth <= 0)
         {
+            fighting = false;
             removeFightStuff();
+            enemiesBeaten = enemiesBeaten + 1;
         } else {
             addFightStuff();
             myTurn = true;
@@ -265,13 +278,23 @@ public class MyWorld extends World
     public void addEnemies()
     {
         whichEnemy = Greenfoot.getRandomNumber(2);
-        if(whichEnemy == 0)
+        if(enemiesBeaten < 5)
         {
-            addObject(enemy1, 300, 300);
-        } else if(whichEnemy == 1)
+            if(whichEnemy == 0)
+            {
+                addObject(enemy1, 300, 300);
+            } else if(whichEnemy == 1)
+            {
+                addObject(enemy2, 300,300);
+            }
+
+        }else if(enemiesBeaten >5)
         {
-            addObject(enemy2, 300,300);
+            //Add Boss
+            //heartbeat sound
+            
         }
+
     }
 
     public void setChoice(boolean x)
@@ -395,7 +418,7 @@ public class MyWorld extends World
         {
             GreenfootImage world2 = new GreenfootImage("images/world2pic.jpg");
             this.setBackground(world2);
-            
+
             addEnemies();
             if(choice == true)
             {
