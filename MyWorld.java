@@ -61,9 +61,7 @@ public class MyWorld extends World
     public int enemOneHealth = 5; 
     Label enemyOneHealthBar;
     Color enemyHealthColor = new Color(111, 31, 120);
-    
-    
-    
+
     
     public int turnDecision = 0;
     /*
@@ -77,13 +75,14 @@ public class MyWorld extends World
     public boolean myTurn = false;
     public boolean win;
     public int whichWorld = 0;
-    
+
     /*
      * world 1 = 0
      * world 2 = 1
      */
     int animateCount = 0;
 
+    int whichEnemy;
     EnemyOne enemy1 = new EnemyOne();
     EnemyTwo enemy2 = new EnemyTwo();
 
@@ -92,7 +91,7 @@ public class MyWorld extends World
     GreenfootImage pinkBlock[] = new GreenfootImage[3];
     GreenfootImage pinkSkill[] = new GreenfootImage[3];
     GreenfootImage pinkUltimate[] = new GreenfootImage[3];
-    
+
     GreenfootSound main = new GreenfootSound("homeForFlowers.mp3");
     GreenfootSound battle = new GreenfootSound("tussleAmongTrees.mp3");
     GreenfootSound loseSound = new GreenfootSound("okToTryAgain.mp3");
@@ -122,7 +121,7 @@ public class MyWorld extends World
         manaBar.setLineColor(manaColor);
         //blockBar.setLineColor(blockColor);
     }
-    
+
     public void createEnemyBars()
     {
         enemyOneHealthBar = new Label(0,50);
@@ -137,7 +136,7 @@ public class MyWorld extends World
         updateBars();
         fight();
     }
-    
+
     public void playMusic()
     {
         if(fighting = false)
@@ -226,7 +225,7 @@ public class MyWorld extends World
             health = health - 14;
             System.out.println("enemy attackin 3");
         }
-        
+
         checkWinLose();
 
     }
@@ -237,7 +236,7 @@ public class MyWorld extends World
         if(health <= 0)
         {
             createLoseScreen();
-            
+
         } else if(enemOneHealth <= 0)
         {
             removeFightStuff();
@@ -247,6 +246,7 @@ public class MyWorld extends World
         }  
 
     }
+
     public void updateBars()
     {
         if(turnDecision == 3)
@@ -257,7 +257,7 @@ public class MyWorld extends World
         manaBar.setValue(mana);
         //blockBar.setValue(block);
     }
-    
+
     public void updateEnemyBar()
     {
         enemyOneHealthBar.setValue(enemOneHealth);
@@ -265,7 +265,14 @@ public class MyWorld extends World
 
     public void addEnemies()
     {
-        addObject(enemy1, 300, 300);
+        whichEnemy = Greenfoot.getRandomNumber(2);
+        if(whichEnemy == 0)
+        {
+            addObject(enemy1, 300, 300);
+        } else if(whichEnemy == 1)
+        {
+            addObject(enemy2, 300,300);
+        }
     }
 
     public void setChoice(boolean x)
@@ -324,7 +331,7 @@ public class MyWorld extends World
         GreenfootImage batImg = bat.getImage();
         batImg.scale(1200,800);
         //addObject(bat, 0,0);
-        
+
     }
 
     public void createFightWorld()
@@ -349,7 +356,7 @@ public class MyWorld extends World
         addObject(healthBar, 50, 50);
         addObject(manaBar, 120, 50);
         //addObject(blockBar, 190, 50);
-        
+
         updateEnemyBar();
 
         GreenfootImage atkImage = attackButton.getImage();
@@ -362,18 +369,18 @@ public class MyWorld extends World
 
         fighting = true;
     }
-    
+
     public void createLoseScreen()
     {
         LoseScreen loseScreen = new LoseScreen();
         Greenfoot.setWorld(loseScreen);
     }
-    
+
     public void winScreen()
     {
         removeFightStuff();
     }
-    
+
     public void removeFightStuff()
     {
         removeObject(attackButton);
@@ -385,15 +392,18 @@ public class MyWorld extends World
         pink.canMove();
         blue.canMove();
         removeObject(enemy1);
-        
+        removeObject(enemy2);
+
     }
-    
+
     public void changeWorld()
     {
         if(whichWorld == 0)
         {
             GreenfootImage world2 = new GreenfootImage("images/world2pic.jpg");
             this.setBackground(world2);
+            
+            addEnemies();
             if(choice = true)
             {
                 pink.setLocation(0,300);
@@ -406,6 +416,7 @@ public class MyWorld extends World
         {
             GreenfootImage world1 = new GreenfootImage("images/world1pic.jpg");
             this.setBackground(world1);
+            addEnemies();
             if(choice = true)
             {
                 pink.setLocation(0,300);
@@ -415,7 +426,6 @@ public class MyWorld extends World
             }
             whichWorld = 0;
         }
-        
-        
+
     }
 }
