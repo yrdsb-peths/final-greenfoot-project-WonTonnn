@@ -52,18 +52,21 @@ public class PinkHands extends Actor
         MyWorld world = (MyWorld) getWorld();
         if(world.myTurn == true)
         {
-            setLocation(300,300);
+            setLocation(0,0);
             if(world.turnDecision == 1)
             {
+                setLocation(100,450);
                 animateAttack();
                 world.enemyAttack();
                
             }else if(world.turnDecision == 2)
             {
+                setLocation(300,300);
                 animateSkill();
                 world.enemyAttack();
             }else if(world.turnDecision == 3)
             {
+                setLocation(300,300);
                 animateBlock();
                 world.enemyAttack();
             }else if(world.turnDecision == 4)

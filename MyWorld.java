@@ -391,6 +391,7 @@ public class MyWorld extends World
 
     public void createFightWorld()
     {
+        System.out.println("made fight world");
         addObject(fightWorld, 300, 200);
         GreenfootImage fightImg = fightWorld.getImage();
         fightImg.scale(600,410);
@@ -418,7 +419,7 @@ public class MyWorld extends World
         GreenfootImage blkImage = blockButton.getImage();
         GreenfootImage sklImage = skillButton.getImage();
 
-        addObject(pinkHand, 300, 300);
+        addObject(pinkHand, 600, 600);
         GreenfootImage pinkHandImg = pinkHand.getImage();
         pinkHandImg.scale(100,100);
 
@@ -438,6 +439,7 @@ public class MyWorld extends World
 
     public void removeFightStuff()
     {
+        System.out.println("renmved fight stuff");
         removeObject(attackButton);
         removeObject(blockButton);
         removeObject(skillButton);
