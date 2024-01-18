@@ -18,9 +18,8 @@ public class Blue extends Actor
     public int health = 100;
     public int block = 100; 
     FightPlace fightWorld = new FightPlace();
-    
+
     int keyDowner = 0;
-    
 
     public Blue()
     {
@@ -29,14 +28,14 @@ public class Blue extends Actor
         for(int i = 0; i < blueIdle.length; i++)
         {
             blueIdle[i] = new GreenfootImage("temp_char/blue_idle/idle" + i + ".png");
-            blueIdle[i].scale(60, 70);
+            blueIdle[i].scale(55, 70);
         }
 
         // right animation loo
         for(int r = 0; r < blueRight.length; r++)
         {
             blueRight[r] = new GreenfootImage("temp_char/blue_right/" + r + ".png");
-            blueRight[r].scale(60, 70);
+            blueRight[r].scale(55, 70);
         }
 
         //Left animatino Loop
@@ -44,7 +43,7 @@ public class Blue extends Actor
         for(int l = 0; l < blueLeft.length; l++)
         {
             blueLeft[l] = new GreenfootImage("temp_char/blue_left/" + l + ".png");
-            blueLeft[l].scale(60, 70);
+            blueLeft[l].scale(55, 70);
         }
 
         timer.mark();
@@ -106,10 +105,8 @@ public class Blue extends Actor
                     animateIdle();
                     random = Greenfoot.getRandomNumber(10);
                 }
-                
-                
-            }
 
+            }
             if(Greenfoot.isKeyDown("a"))
             {
                 if(keyDowner == 0)
@@ -132,7 +129,7 @@ public class Blue extends Actor
                 animateRight();
             }
         }
-        
+
         if(isTouching(EnemyOne.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -141,7 +138,7 @@ public class Blue extends Actor
             setLocation(getX() - 20, getY());
 
         }
-        
+
         if(isTouching(EnemyTwo.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -151,8 +148,23 @@ public class Blue extends Actor
 
         }
 
+        if(isTouching(Boss.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.createFightWorld();
+            stop = true;
+            setLocation(getX() - 25, getY());
+
+        }
+
+        if(isTouching(HealthPot.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.healPlayer();
+        }
+
     }
-    
+
     public void canMove()
     {
         stop = false;
