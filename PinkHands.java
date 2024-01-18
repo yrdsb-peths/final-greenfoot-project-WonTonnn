@@ -17,18 +17,21 @@ public class PinkHands extends Actor
     public int block = 100;
     public int attack = 20;
     public int mouse;
-    GreenfootImage downSwing[] = new GreenfootImage[3];
-    GreenfootImage sideSwing[] = new GreenfootImage[3];
-    GreenfootImage blockSwing[] = new GreenfootImage[2];
     SimpleTimer swingTimer = new SimpleTimer();
 
-    GreenfootImage pinkAttack[] = new GreenfootImage[3];
-    GreenfootImage pinkBlock[] = new GreenfootImage[3];
-    GreenfootImage pinkSkill[] = new GreenfootImage[3];
+    GreenfootImage pinkAttack = new GreenfootImage("images/temp_bat/pink_attack/1.PNG");
+    GreenfootImage pinkBlock[] = new GreenfootImage[23];
+    GreenfootImage pinkSkill[] = new GreenfootImage[17];
     GreenfootImage pinkUltimate[] = new GreenfootImage[3];
+    GreenfootImage transparent = new GreenfootImage("images/temp_bat/transparent.PNG");
+    
+    GreenfootSound attackSound = new GreenfootSound("mainAttack.mp3");
+    GreenfootSound blockSound = new GreenfootSound("block.mp3");
 
     SimpleTimer fightTimer = new SimpleTimer();
     public int animateCount = 0;
+    int atkx = 400;
+    int atky = 300;
     
     /*
      * 1 = attack
@@ -47,8 +50,9 @@ public class PinkHands extends Actor
     public void act()
     {
         MyWorld world = (MyWorld) getWorld();
-        if(world.myTurn = true)
+        if(world.myTurn == true)
         {
+            setLocation(300,300);
             if(world.turnDecision == 1)
             {
                 animateAttack();
@@ -67,20 +71,31 @@ public class PinkHands extends Actor
                 animateUltimate();
                 world.enemyAttack();
             }
-        } 
+        }
+        
+        if(world.myTurn == false)
+        {
+            setLocation(300, 1000);
+        }
     }
 
     public void animateAttack()
     {
         MyWorld world = (MyWorld) getWorld();
-        for(int i = 0; i < pinkAttack.length; i++)
+        setImage(pinkAttack);
+        for(int i = 0; i < 6; i++)
         {
-            pinkAttack[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
-            pinkAttack[i].scale(50,50);
-            setImage(pinkAttack[i]);
-            Greenfoot.delay(10);
+            this.setLocation(atkx, atky);
+            Greenfoot.delay(5);
             animateCount++;
+            if(i == (5))
+            {
+                attackSound.play();
+            }
+            atkx = atkx - 50;
+            atky = atky - 20;
         }
+        
         world.myTurn = false;
         world.turnDecision = 0;
         
@@ -92,11 +107,15 @@ public class PinkHands extends Actor
         MyWorld world = (MyWorld) getWorld();
         for(int i = 0; i < pinkBlock.length; i++)
         {
-            pinkBlock[i] = new GreenfootImage("temp_char/pink_idle/idle" + i + ".PNG");
-            pinkBlock[i].scale(50,50);
+            pinkBlock[i] = new GreenfootImage("images/temp_bat/pink_block/" + i + ".PNG");
+            //pinkBlock[i].scale(50,50);
             setImage(pinkBlock[i]);
-            Greenfoot.delay(10);
+            Greenfoot.delay(5);
             animateCount++;
+            if(i == (pinkBlock.length - 1))
+            {
+                blockSound.play();
+            }
         }
         world.myTurn = false;
         world.turnDecision = 0;
@@ -108,12 +127,13 @@ public class PinkHands extends Actor
         MyWorld world = (MyWorld) getWorld();
         for(int i = 0; i < pinkSkill.length; i++)
         {
-            pinkSkill[i] = new GreenfootImage("images/temp_bat/side_swing/swing_" + i + ".jpg");
-            pinkSkill[i].scale(50,50);
+            pinkSkill[i] = new GreenfootImage("images/temp_bat/pink_skill/" + i + ".PNG");
+            
             setImage(pinkSkill[i]);
-            Greenfoot.delay(10);
+            Greenfoot.delay(5);
             animateCount++;
         }
+        setLocation(getX(), getY() + 20);
         world.myTurn = false;
         world.turnDecision = 0;
         

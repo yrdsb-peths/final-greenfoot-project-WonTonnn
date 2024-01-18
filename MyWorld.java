@@ -58,7 +58,12 @@ public class MyWorld extends World
     Label manaBar;
     Color manaColor = new Color(22, 168, 247);
 
+    public int enemOneMaxHealth = 5;
     public int enemOneHealth = 5; 
+    
+    public int bossHealth = 300;
+    Label bossHealthBar;
+    
     Label enemyOneHealthBar;
     Color enemyHealthColor = new Color(111, 31, 120);
 
@@ -81,11 +86,14 @@ public class MyWorld extends World
      */
     int animateCount = 0;
     boolean lose = false;
-
+    public boolean bossFighting =false;
+    
     int whichEnemy;
     int enemiesBeaten = 0;
     EnemyOne enemy1 = new EnemyOne();
     EnemyTwo enemy2 = new EnemyTwo();
+    
+    Boss boss = new Boss();
 
     //Player attack animations:
     GreenfootImage pinkAttack[] = new GreenfootImage[3];
@@ -97,6 +105,9 @@ public class MyWorld extends World
     GreenfootSound battle = new GreenfootSound("tussleAmongTrees.mp3");
     GreenfootSound loseSound = new GreenfootSound("okToTryAgain.mp3");
     GreenfootSound winSound = new GreenfootSound("howdWeDo.mp3");
+    GreenfootSound healthHealSound = new GreenfootSound("health heal.mp3");
+    GreenfootSound blockHealSound = new GreenfootSound("block heal.mp3");
+    GreenfootSound arachnophobia = new GreenfootSound("arachnophobia.mp3");
 
     public MyWorld()
     {    
@@ -135,7 +146,9 @@ public class MyWorld extends World
         makeChoice();
         updateBars();
         fight();
+        Greenfoot.setSpeed(50);
     }
+   
 
     public void playMusic()
     {
@@ -154,6 +167,13 @@ public class MyWorld extends World
             main.stop();
             loseSound.playLoop();
         }
+        
+        if(bossFighting == true)
+        {
+            main.stop();
+            battle.stop();
+            arachnophobia.playLoop();
+        }
     }
 
     public void fight()
@@ -169,10 +189,12 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
-                    System.out.println(turnDecision);
+                   // System.out.println(turnDecision);
                     turnDecision = 1;
-                    System.out.println(turnDecision);
+                    //System.out.println(turnDecision);
+                    System.out.println("attacked");
                     enemOneHealth = enemOneHealth - 12;
+                    Greenfoot.delay(10);
 
                     //animateAttack();
 
@@ -185,7 +207,9 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
+                    System.out.println("blocked");
                     turnDecision = 3;
+                    Greenfoot.delay(10);
 
                     //Block image on until my turn true again
                 }
@@ -198,6 +222,7 @@ public class MyWorld extends World
                     removeObject(skillButton);
                     enemOneHealth = enemOneHealth - 40;
                     turnDecision = 2;
+                    Greenfoot.delay(10);
 
                     //add skill image and ultimate
                     //choose between skill and ultimate in if statement = 2 or 4
@@ -217,22 +242,22 @@ public class MyWorld extends World
     public void enemyAttack()
     {
         int enemAtk = Greenfoot.getRandomNumber(2);
-        System.out.println("enemy attackin");
+        //System.out.println("enemy attackin");
         updateBars();
         updateEnemyBar();
         Greenfoot.delay(100);
         if(enemAtk == 1)
         {
             health = health - 10;
-            System.out.println("enemy attackin 1");
+            //System.out.println("enemy attackin 1");
         }else if(enemAtk == 2)
         {
             health = health - 13;
-            System.out.println("enemy attackin 2");
+            //System.out.println("enemy attackin 2");
         }else if(enemAtk == 0)
         {
             health = health - 14;
-            System.out.println("enemy attackin 3");
+            //System.out.println("enemy attackin 3");
         }
 
         checkWinLose();
@@ -250,8 +275,16 @@ public class MyWorld extends World
         } else if(enemOneHealth <= 0)
         {
             fighting = false;
-            removeFightStuff();
+            battle.stop();
             enemiesBeaten = enemiesBeaten + 1;
+            if(enemiesBeaten == 2)
+            {
+                whichWorld = 3;
+            }
+            winSound.play();
+            Greenfoot.delay(400);
+            removeFightStuff();
+            
         } else {
             addFightStuff();
             myTurn = true;
@@ -272,13 +305,23 @@ public class MyWorld extends World
 
     public void updateEnemyBar()
     {
-        enemyOneHealthBar.setValue(enemOneHealth);
+        if(enemOneHealth > 0)
+        {
+           enemyOneHealthBar.setValue(enemOneHealth); 
+        }
+        
+        if(enemOneHealth < 0)
+        {
+            enemyOneHealthBar.setValue(0);
+        }
+        
     }
 
     public void addEnemies()
     {
         whichEnemy = Greenfoot.getRandomNumber(2);
-        if(enemiesBeaten < 5)
+        System.out.println(enemiesBeaten);
+        if(enemiesBeaten < 2)
         {
             if(whichEnemy == 0)
             {
@@ -288,11 +331,9 @@ public class MyWorld extends World
                 addObject(enemy2, 300,300);
             }
 
-        }else if(enemiesBeaten >5)
+        }else if(enemiesBeaten == 2)
         {
-            //Add Boss
-            //heartbeat sound
-            
+            addObject(boss, 400, 300); 
         }
 
     }
@@ -335,13 +376,13 @@ public class MyWorld extends World
         if(choice == true)
         {
             GreenfootImage pinkImg = pink.getImage();
-            pinkImg.scale(120,100);
+            pinkImg.scale(110,100);
             addObject(pink, 20, 290);
 
         }else if(choice == false){
 
             GreenfootImage blueImg = blue.getImage();
-            blueImg.scale(60,70);
+            blueImg.scale(55,70);
             addObject(blue, 20, 300);
         }
         addEnemies();
@@ -377,7 +418,7 @@ public class MyWorld extends World
         GreenfootImage blkImage = blockButton.getImage();
         GreenfootImage sklImage = skillButton.getImage();
 
-        addObject(pinkHand, 100, 100);
+        addObject(pinkHand, 300, 300);
         GreenfootImage pinkHandImg = pinkHand.getImage();
         pinkHandImg.scale(100,100);
 
@@ -409,6 +450,7 @@ public class MyWorld extends World
         blue.canMove();
         removeObject(enemy1);
         removeObject(enemy2);
+        enemOneHealth = enemOneMaxHealth;
 
     }
 
@@ -423,14 +465,15 @@ public class MyWorld extends World
             if(choice == true)
             {
                 pink.setLocation(0,300);
-                System.out.println("pinMove");
+                //System.out.println("pinMove");
             }
             if (choice == false)
             {
                 blue.setLocation(0,300);
-                System.out.println("Moved");
+                //System.out.println("Moved");
             }
             whichWorld = 1;
+            
         }else if(whichWorld == 1)
         {
             GreenfootImage world1 = new GreenfootImage("images/world1pic.jpg");
@@ -445,6 +488,22 @@ public class MyWorld extends World
                 blue.setLocation(0,300);
             }
             whichWorld = 0;
+           
+        }else if(whichWorld == 3)
+        {
+            GreenfootImage world3 = new GreenfootImage("images/BossOmori.jpg");
+            this.setBackground(world3);
+            addEnemies();
+            if(choice == true)
+            {
+                pink.setLocation(0,300);
+            }
+            if (choice == false)
+            {
+                blue.setLocation(0,300);
+            }
+            bossFighting = true;
+            
         }
 
     }
