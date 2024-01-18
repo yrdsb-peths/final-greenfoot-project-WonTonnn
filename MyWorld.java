@@ -96,7 +96,7 @@ public class MyWorld extends World
     boolean lose = false;
     public boolean bossFighting =false;
 
-    int whichEnemy;
+    int whichEnemy = 0;
     int enemiesBeaten = 0;
     EnemyOne enemy1 = new EnemyOne();
     EnemyTwo enemy2 = new EnemyTwo();
@@ -321,8 +321,11 @@ public class MyWorld extends World
 
         if(health <= 0)
         {
+            //System.out.println("lost check!");
             lose = true;
-            act();
+            //act();
+            battle.stop();
+            loseSound.playLoop();
             createLoseScreen();
         } else if(enemOneHealth <= 0)
         {
@@ -384,7 +387,7 @@ public class MyWorld extends World
     {
         whichEnemy = Greenfoot.getRandomNumber(2);
         System.out.println(enemiesBeaten);
-        if(enemiesBeaten < 2)
+        if(enemiesBeaten < 5)
         {
             if(whichEnemy == 0)
             {
@@ -394,7 +397,7 @@ public class MyWorld extends World
                 addObject(enemy2, 300,300);
             }
 
-        }else if(enemiesBeaten == 2)
+        }else if(enemiesBeaten == 5)
         {
             addObject(boss, 400, 300); 
         }

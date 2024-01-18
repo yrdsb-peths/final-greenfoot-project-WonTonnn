@@ -51,7 +51,7 @@ public class PinkHands extends Actor
         MyWorld world = (MyWorld) getWorld();
         if(world.myTurn == true)
         {
-            setLocation(0,0);
+            setLocation(700,700);
             if(world.turnDecision == 1)
             {
                 setLocation(100,450);
