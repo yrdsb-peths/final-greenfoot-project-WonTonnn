@@ -270,17 +270,18 @@ public class MyWorld extends World
         if(enemAtk == 1)
         {
             health = health - 10;
-            enemyDamage = -10;
+            //enemyDamage = -10;
+            
             //System.out.println("enemy attackin 1");
         }else if(enemAtk == 2)
         {
             health = health - 13;
-            enemyDamage = -13;
+            //enemyDamage = -13;
             //System.out.println("enemy attackin 2");
         }else if(enemAtk == 0)
         {
             health = health - 14;
-            enemyDamage = -14;
+            //enemyDamage = -14;
             //System.out.println("enemy attackin 3");
         }
 
