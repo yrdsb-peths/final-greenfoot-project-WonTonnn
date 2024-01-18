@@ -7,9 +7,9 @@ Instrcutions:
 Using WASD, explore the roads and fight different enemies! Beat the boss! 
 
 -- Magical Princess Girly Adventure is based around using a sprite to run around a world and fight against some enemies! Win by reaching the 6th enemy and beating the boss! 
+- Remember to keep on going left!!
 
-
-- Your Readme.md file should summarize your project. What is your project about? How does someone get started playing it? Is there anything the teacher should know (e.g. cheat mode to get to the end screen)
+- Heavily inspired by Omori!!
 
 <details><summary>
 
