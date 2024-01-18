@@ -24,7 +24,7 @@ public class PinkHands extends Actor
     GreenfootImage pinkSkill[] = new GreenfootImage[17];
     GreenfootImage pinkUltimate[] = new GreenfootImage[3];
     GreenfootImage transparent = new GreenfootImage("images/temp_bat/transparent.PNG");
-    
+
     GreenfootSound attackSound = new GreenfootSound("mainAttack.mp3");
     GreenfootSound blockSound = new GreenfootSound("block.mp3");
 
@@ -32,7 +32,7 @@ public class PinkHands extends Actor
     public int animateCount = 0;
     int atkx = 400;
     int atky = 300;
-    
+
     /*
      * 1 = attack
      * 2 = skill
@@ -41,10 +41,9 @@ public class PinkHands extends Actor
      * 0 = nothing
      */
 
-
     public PinkHands()
     {
-        
+
     }
 
     public void act()
@@ -58,7 +57,7 @@ public class PinkHands extends Actor
                 setLocation(100,450);
                 animateAttack();
                 world.enemyAttack();
-               
+
             }else if(world.turnDecision == 2)
             {
                 setLocation(300,300);
@@ -68,14 +67,14 @@ public class PinkHands extends Actor
             {
                 setLocation(300,300);
                 animateBlock();
-                world.enemyAttack();
+                world.bossAttack();
             }else if(world.turnDecision == 4)
             {
                 animateUltimate();
                 world.enemyAttack();
             }
         }
-        
+
         if(world.myTurn == false)
         {
             setLocation(300, 1000);
@@ -98,13 +97,14 @@ public class PinkHands extends Actor
             atkx = atkx - 50;
             atky = atky - 20;
         }
-        
+
         world.myTurn = false;
         world.turnDecision = 0;
-        
+        atkx = 400;
+        atky = 300;
 
     }
-    
+
     public void animateBlock()
     {
         MyWorld world = (MyWorld) getWorld();
@@ -122,16 +122,16 @@ public class PinkHands extends Actor
         }
         world.myTurn = false;
         world.turnDecision = 0;
-       
+
     }
-    
+
     public void animateSkill()
     {
         MyWorld world = (MyWorld) getWorld();
         for(int i = 0; i < pinkSkill.length; i++)
         {
             pinkSkill[i] = new GreenfootImage("images/temp_bat/pink_skill/" + i + ".PNG");
-            
+
             setImage(pinkSkill[i]);
             Greenfoot.delay(5);
             animateCount++;
@@ -139,9 +139,9 @@ public class PinkHands extends Actor
         setLocation(getX(), getY() + 20);
         world.myTurn = false;
         world.turnDecision = 0;
-        
+
     }
-    
+
     public void animateUltimate()
     {
         MyWorld world = (MyWorld) getWorld();
@@ -155,7 +155,7 @@ public class PinkHands extends Actor
         }
         world.myTurn = false;
         world.turnDecision = 0;
-        
+
     }
 
 }

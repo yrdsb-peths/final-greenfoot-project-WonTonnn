@@ -18,9 +18,8 @@ public class Blue extends Actor
     public int health = 100;
     public int block = 100; 
     FightPlace fightWorld = new FightPlace();
-    
+
     int keyDowner = 0;
-    
 
     public Blue()
     {
@@ -106,10 +105,8 @@ public class Blue extends Actor
                     animateIdle();
                     random = Greenfoot.getRandomNumber(10);
                 }
-                
-                
-            }
 
+            }
             if(Greenfoot.isKeyDown("a"))
             {
                 if(keyDowner == 0)
@@ -132,7 +129,7 @@ public class Blue extends Actor
                 animateRight();
             }
         }
-        
+
         if(isTouching(EnemyOne.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -141,7 +138,7 @@ public class Blue extends Actor
             setLocation(getX() - 20, getY());
 
         }
-        
+
         if(isTouching(EnemyTwo.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -150,7 +147,7 @@ public class Blue extends Actor
             setLocation(getX() - 5, getY());
 
         }
-        
+
         if(isTouching(Boss.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -160,8 +157,14 @@ public class Blue extends Actor
 
         }
 
+        if(isTouching(HealthPot.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.healPlayer();
+        }
+
     }
-    
+
     public void canMove()
     {
         stop = false;

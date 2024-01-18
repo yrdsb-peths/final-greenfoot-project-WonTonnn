@@ -25,7 +25,8 @@ public class Pink extends Actor
     int keyDowner = 0;
     int height = 70;
     int width = 100; 
-    
+
+    GreenfootSound healthHealSound = new GreenfootSound("health heal.mp3");
 
     public Pink()
     {
@@ -94,7 +95,7 @@ public class Pink extends Actor
 
     public void act()
     {
-        
+
         if(getX() >= 590 )
         {
             MyWorld world = (MyWorld) getWorld();
@@ -112,10 +113,8 @@ public class Pink extends Actor
                     animateIdle();
                     random = Greenfoot.getRandomNumber(10);
                 }
-                
-                
+
             }
-            
 
             if(Greenfoot.isKeyDown("a"))
             {
@@ -124,9 +123,8 @@ public class Pink extends Actor
                     imageIndex = 0;
                     keyDowner = 1;
                 }
-                
+
                 setLocation(getX() - 2, getY());
-                
 
                 animateLeft();
             }
@@ -142,7 +140,7 @@ public class Pink extends Actor
                 animateRight();
             }
         }
-        
+
         if(isTouching(EnemyOne.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -151,7 +149,7 @@ public class Pink extends Actor
             setLocation(getX() - 5, getY());
 
         }
-        
+
         if(isTouching(EnemyTwo.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -160,7 +158,7 @@ public class Pink extends Actor
             setLocation(getX() - 25, getY());
 
         }
-        
+
         if(isTouching(Boss.class))
         {
             MyWorld world = (MyWorld) getWorld();
@@ -170,18 +168,25 @@ public class Pink extends Actor
 
         }
 
+        if(isTouching(HealthPot.class))
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.healPlayer();
+            healthHealSound.play();
+        }
+
     }
-    
+
     public void canMove()
     {
         stop = false;;
     }
-    
+
     public void setHealth(int x)
     {
         health = x;
     }
-    
+
     public int getHealth()
     {
         return health;
