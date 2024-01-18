@@ -60,8 +60,8 @@ public class MyWorld extends World
     Label manaBar;
     Color manaColor = new Color(22, 168, 247);
 
-    public int enemOneMaxHealth = 5;
-    public int enemOneHealth = 5; 
+    public int enemOneMaxHealth = 100;
+    public int enemOneHealth = 100; 
 
     public int bossHealth = 300;
     Label bossHealthBar;
@@ -160,7 +160,7 @@ public class MyWorld extends World
 
     public void checkWinWin()
     {
-        if(enemiesBeaten == 3)
+        if(enemiesBeaten == 6)
         {
             WinScreen winscreen = new WinScreen();
             Greenfoot.setWorld(winscreen);
@@ -328,7 +328,7 @@ public class MyWorld extends World
             fighting = false;
             battle.stop();
             enemiesBeaten = enemiesBeaten + 1;
-            if(enemiesBeaten == 2)
+            if(enemiesBeaten == 5)
             {
                 whichWorld = 3;
             }
