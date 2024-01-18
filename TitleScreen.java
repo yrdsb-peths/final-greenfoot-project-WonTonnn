@@ -32,13 +32,13 @@ public class TitleScreen extends World
         addObject(titlecard, 300, 200);
         addObject(button, 450, 180);
         
-        addObject(tutorialbutt, 540, 370);
+        //addObject(tutorialbutt, 540, 370);
     }
 
     public void addChoice()
     {
         removeObject(button);
-        removeObject(tutorialbutt);
+        //removeObject(tutorialbutt);
         MyWorld gameWorld = new MyWorld();
         Greenfoot.setWorld(gameWorld);
     }

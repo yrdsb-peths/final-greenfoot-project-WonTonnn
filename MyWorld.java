@@ -226,7 +226,7 @@ public class MyWorld extends World
                     removeObject(blockButton);
                     removeObject(attackButton);
                     removeObject(skillButton);
-                    System.out.println("blocked");
+                    //System.out.println("blocked");
                     turnDecision = 3;
                     Greenfoot.delay(10);
 
@@ -386,20 +386,26 @@ public class MyWorld extends World
     public void addEnemies()
     {
         whichEnemy = Greenfoot.getRandomNumber(2);
-        System.out.println(enemiesBeaten);
+        //System.out.println(enemiesBeaten);
         if(enemiesBeaten < 5)
         {
             if(whichEnemy == 0)
             {
                 addObject(enemy1, 300, 300);
+                GreenfootImage enemy1img = enemy1.getImage();
+                enemy1img.scale(70,70);
             } else if(whichEnemy == 1)
             {
                 addObject(enemy2, 300,300);
+                GreenfootImage enemy2img = enemy2.getImage();
+                enemy2img.scale(70,70);
             }
 
         }else if(enemiesBeaten == 5)
         {
             addObject(boss, 400, 300); 
+            GreenfootImage bossimg = boss.getImage();
+            bossimg.scale(90,90);
         }
 
     }
@@ -457,7 +463,7 @@ public class MyWorld extends World
 
     public void createFightWorld()
     {
-        System.out.println("made fight world");
+        //System.out.println("made fight world");
         addObject(fightWorld, 300, 200);
         GreenfootImage fightImg = fightWorld.getImage();
         fightImg.scale(600,410);
@@ -474,11 +480,14 @@ public class MyWorld extends World
         removeObject(healthBar);
         removeObject(manaBar);
         removeObject(enemy1);
+        removeObject(enemy2);
+        removeObject(boss);
         //removeObject(blockBar);
         addObject(healthBar, 50, 50);
         addObject(manaBar, 120, 50);
         //addObject(blockBar, 190, 50);
 
+        setPaintOrder(PinkHands.class, EnemyOne.class, EnemyTwo.class, Boss.class);
         //addObject(enemyAttacks, 500,300);
         //addObject(yourAttacks, 100,300);
 
@@ -488,21 +497,23 @@ public class MyWorld extends World
         GreenfootImage blkImage = blockButton.getImage();
         GreenfootImage sklImage = skillButton.getImage();
 
+        addObject(pinkHand, 600, 600);
+        GreenfootImage pinkHandImg = pinkHand.getImage();
         if(whichEnemy == 0)
         {
             addObject(enemy1,300,200);
-        }else if(whichEnemy == 1)
+        }
+        
+        if(whichEnemy == 1)
         {
             addObject(enemy2, 300,200);
-        }else if(whichEnemy == 3)
+        }
+        
+        if(whichEnemy == 3)
         {
             addObject(boss,300,200);
         }
-        addObject(pinkHand, 600, 600);
-        GreenfootImage pinkHandImg = pinkHand.getImage();
         //pinkHandImg.scale(100,100);
-
-
         fighting = true;
     }
 
@@ -519,7 +530,7 @@ public class MyWorld extends World
 
     public void removeFightStuff()
     {
-        System.out.println("renmved fight stuff");
+        //System.out.println("renmved fight stuff");
         removeObject(attackButton);
         removeObject(blockButton);
         removeObject(skillButton);

@@ -162,9 +162,9 @@ public class Pink extends Actor
         if(isTouching(Boss.class))
         {
             MyWorld world = (MyWorld) getWorld();
+            setLocation(getX() - 25, getY());
             world.createFightWorld();
             stop = true;
-            setLocation(getX() - 25, getY());
 
         }
 
